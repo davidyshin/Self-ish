@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Bowlby+One+SC');
+
+html {
+  text-align: center;
+  background-color: mintcream;
+}
+
+h1, h6 {
+  font-family: 'Bowlby One SC', cursive;
+}
+
+img {
+  margin-top: 50px;
+}
+
+.inputBox {
+  margin: 10px;
+}
