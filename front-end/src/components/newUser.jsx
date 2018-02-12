@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import "../../src/register-page.css"
 
 
 class NewUser extends React.Component {
