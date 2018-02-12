@@ -12,7 +12,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <nav>
-          <Link to="/users/new">Register</Link> {" . "}
+          <Link to="/users/new">Sign Up</Link> {" . "}
           <Link to="/users/login">Log In</Link>
           {" . "}
           <Link to="/users/hobbies"> My Hobbies </Link>
