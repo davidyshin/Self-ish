@@ -13,7 +13,8 @@ function registerUser(req, res, next) {
                     message: "Registration successful."
                 })
         })
-        .catch((err) =>{     
+        .catch((err) =>{  
+            console.log(`this is your error`, err)   
             res.status(500)
             .json({
                 message: `Registration Failed    `, err

@@ -57,7 +57,7 @@ class LoginUser extends React.Component {
                 <input name="username" type="text" value={username} onChange={this.handleInput} />
                 {" "}
                 Password:
-                <input name="password" type="text" value={password} onChange={this.handleInput} />
+                <input name="password" type="password" value={password} onChange={this.handleInput} />
                 <button onClick={this.handleSubmit}>Submit</button>
                 <br />
                 {message}

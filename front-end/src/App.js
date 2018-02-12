@@ -11,10 +11,10 @@ class App extends Component {
         <nav>
           <Link to="/users/new">Sign Up</Link>
           {" "}
-          <Link to="/users">Log In</Link>
+          <Link to="/">Log In</Link>
         </nav>
         <h1>Self-ish</h1>
-        <Route path='/users' component={Users} />
+        <Route path='/' component={Users} />
       </div>
     );
   }

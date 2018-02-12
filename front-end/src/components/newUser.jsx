@@ -63,14 +63,14 @@ class NewUser extends React.Component {
         return (
             <div>
                 <h1>Hello new user! Please, register below.</h1>
-                <input className="inputBox" name="email" type="text" value={email} onChange={this.handleInput} placeholder='Email' />
+                <input className="inputBox" name="email" type="email" value={email} onChange={this.handleInput} placeholder='Email' maxLength='30' />
                 <br />
-                <input className="inputBox" name="fullName" type="text" value={fullName} onChange={this.handleInput} placeholder='Full Name' />
+                <input className="inputBox" name="fullName" type="text" value={fullName} onChange={this.handleInput} placeholder='Full Name' maxLength='30' />
                 <br />
-                <input className="inputBox" name="username" type="text" value={username} onChange={this.handleInput} placeholder='Username' />
+                <input className="inputBox" name="username" type="text" value={username} onChange={this.handleInput} placeholder='Username' maxLength='30' />
 
                 <br />
-                <input className="inputBox" name="password" type="text" value={password} onChange={this.handleInput} placeholder='Password' />
+                <input className="inputBox" name="password" type="password" value={password} onChange={this.handleInput} placeholder='Password' maxLength='30' />
                 <br />
                 <button onClick={this.handleSubmit}>Submit</button>
                 <br />
