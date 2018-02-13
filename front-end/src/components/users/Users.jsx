@@ -1,8 +1,8 @@
 import React from 'react'
 import { Route, Link, Switch } from 'react-router-dom'
-import NewUser from './newUser'
-import LoginUser from './loginUser'
-import UserProfile from './userProfile'
+import NewUser from './NewUser'
+import LoginUser from './LoginUser'
+import UserProfile from './UserProfile'
 import axios from 'axios'
 
 
