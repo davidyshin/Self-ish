@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 import NewPost from "./NewPost"
+import "../../user-profile.css"
 
    
 class UserProfile extends React.Component {
@@ -20,18 +21,10 @@ class UserProfile extends React.Component {
       let {user, logout} = this.props
       let {modalIsOpen} = this.state
     return (
-      <div>
-        <header>
-          <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-          />
-        </header>
-        <div className="header-bar">
+      <div className="header-bar">
+        <div >
           <h1 className="header-title">Self-ish</h1>
-        </div>
-
-        <h2>{user}'s Feed!</h2>
+        
         <button>View Feed</button>
         <button>Edit Profile</button>
         <Modal isOpen={modalIsOpen} contentLabel="New Post">
@@ -44,6 +37,7 @@ class UserProfile extends React.Component {
 
         <button onClick={logout}>LOGOUT :(</button>
         <br />
+        </div>
       </div>
     );
   }
