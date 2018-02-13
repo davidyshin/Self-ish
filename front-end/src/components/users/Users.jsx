@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Link, Switch } from 'react-router-dom'
 import NewUser from './NewUser'
 import LoginUser from './LoginUser'
+import EditProfile from './EditProfile'
 import UserProfile from './UserProfile'
 import axios from 'axios'
 
@@ -76,14 +77,17 @@ class Users extends React.Component {
 
     }
 
-
+   
     render() {
         console.log(`user`, this.state)
         return (
+            
             <div>
                 <Switch>
                     <Route exact path='/' component={NewUser} />
-                    <Route exact path='/users/login' component={this.renderProfile} />
+                    <Route exact path='/users/login' component={LoginUser} />
+                    <Route exact path='/users/editprofile' component={EditProfile} />
+
                 </Switch>
             </div>
         )
