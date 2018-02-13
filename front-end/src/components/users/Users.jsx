@@ -3,6 +3,7 @@ import { Route, Link, Switch } from 'react-router-dom'
 import NewUser from './NewUser'
 import LoginUser from './LoginUser'
 import UserProfile from './UserProfile'
+import Feed from './feed'
 import axios from 'axios'
 
 
@@ -62,7 +63,7 @@ class Users extends React.Component {
 
 
     renderProfile = () => {
-        console.log("HITTING")
+       
         const { active, user } = this.state
         if (active === false) {
             return (
@@ -76,6 +77,22 @@ class Users extends React.Component {
 
     }
 
+    renderFeed = () => {
+        const { active, user } = this.state 
+        if(active === false || !user) {
+            return (
+            <LoginUser active={this.isActive} user={this.UserFound} />
+            )
+        } else {
+            return (
+                <Feed />
+            )
+        }
+    }
+
+
+
+
 
     render() {
         console.log(`user`, this.state)
@@ -83,7 +100,8 @@ class Users extends React.Component {
             <div>
                 <Switch>
                     <Route exact path='/' component={NewUser} />
-                    <Route exact path='/users/login' component={this.renderProfile} />
+                    <Route exact path='/feed' render={this.renderFeed} />
+                    <Route exact path='/profile' component={this.renderProfile} />
                 </Switch>
             </div>
         )

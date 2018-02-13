@@ -144,6 +144,24 @@ function updateLikes (req, res, next) {
     })
 }
 
+function getAllInfo(req, res, next) {
+    db
+    .any('SELECT * FROM users')
+    .then((info) => {
+        res.status(200)
+        .json({
+            data: info
+        })
+    })
+    .catch((err) => {
+        console.log(`getallInfo err`, err)
+        res.status(500)
+        .json({
+            data: 'getallInfo not found'
+        })
+    })
+}
+
 
 
 
@@ -176,5 +194,6 @@ module.exports = {
     getAllPost,
     getUserPost, 
     updateLikes,
-    getUserLikes
+    getUserLikes, 
+    getAllInfo
 }

@@ -22,8 +22,6 @@ class LoginUser extends React.Component {
 
 
 
-
-
     handleSubmit = (e) => {
         const { username, password } = this.state
         axios
