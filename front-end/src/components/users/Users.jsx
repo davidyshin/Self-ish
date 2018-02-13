@@ -84,8 +84,8 @@ class Users extends React.Component {
         return (
             <div>
                 <Switch>
-                    <Route exact path='/' render={this.renderProfile} />
-                    <Route path='/users/new' component={NewUser} />
+                    <Route exact path='/' component={NewUser} />
+                    <Route path='/users/login' component={LoginUser} />
                 </Switch>
             </div>
         )
