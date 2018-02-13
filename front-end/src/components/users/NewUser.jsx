@@ -60,7 +60,6 @@ class NewUser extends React.Component {
         <div className="signup-container">
       <div id="register-box">
         <h1>Hello new user! Please, register below.</h1>
-        <form onSubmit={this.handleSubmit}>
           <input
             className="input-box"
             name="email"
@@ -102,8 +101,7 @@ class NewUser extends React.Component {
             maxLength="30"
           />
           <br />
-          <input type="submit" value="Submit"/>
-        </form>
+          <input onClick={this.handleSubmit} type="submit" value="Submit"/>
         <br />
         {message}
       </div>
