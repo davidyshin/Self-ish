@@ -22,6 +22,7 @@ class NewUser extends React.Component {
   };
 
   handleSubmit = e => {
+      e.preventDefault()
     const { username, password, email, fullName } = this.state;
     if (username.length <= 6) {
       this.setState({
