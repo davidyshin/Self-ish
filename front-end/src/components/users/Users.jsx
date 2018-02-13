@@ -1,11 +1,9 @@
 import React from 'react'
 import { Route, Link, Switch } from 'react-router-dom'
-import NewUser from './newUser'
-import LoginUser from './loginUser'
-import UserProfile from './userProfile'
+import NewUser from './NewUser'
+import LoginUser from './LoginUser'
+import UserProfile from './UserProfile'
 import axios from 'axios'
-
-
 
 
 
@@ -64,6 +62,7 @@ class Users extends React.Component {
 
 
     renderProfile = () => {
+        console.log("HITTING")
         const { active, user } = this.state
         if (active === false) {
             return (
@@ -83,8 +82,8 @@ class Users extends React.Component {
         return (
             <div>
                 <Switch>
-                    <Route exact path='/' render={this.renderProfile} />
-                    <Route path='/users/new' component={NewUser} />
+                    <Route exact path='/' component={NewUser} />
+                    <Route exact path='/users/login' component={this.renderProfile} />
                 </Switch>
             </div>
         )

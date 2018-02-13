@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import { Route, Link, Switch } from 'react-router-dom';
+import "../../login-page.css";
 
 
 class LoginUser extends React.Component {
@@ -51,16 +53,28 @@ class LoginUser extends React.Component {
     render() {
         const { username, password, message } = this.state
         return (
-            <div>
-                <h1>LOG IN BRO</h1>
-                Username:
-                <input name="username" type="text" value={username} onChange={this.handleInput} />
-                {" "}
-                Password:
-                <input name="password" type="password" value={password} onChange={this.handleInput} />
-                <button onClick={this.handleSubmit}>Submit</button>
+            <div className="login-container">
+                <div id="login-box">
+                <h1 id="app-name" > Self-ish </h1>
+                <input name="username" type="text" value={username} onChange={this.handleInput} 
+                placeholder="Username"
+                className="input-box"
+                />
+                <br/>
+                <input name="password" type="password" value={password} onChange={this.handleInput} 
+                placeholder="Password"
+                className="input-box"
+                />
+                <br/>
+                <button onClick={this.handleSubmit}>Log in</button>
                 <br />
                 {message}
+                <p> <Link to="/"> Forgot Password?</Link></p>
+                </div>
+
+                <div id="signup-box">
+                    <p> Not a Self-ish member? <Link to="/"> Sign Up</Link></p>
+                 </div>
             </div>
         )
     }
