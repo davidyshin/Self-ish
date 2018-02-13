@@ -10,5 +10,8 @@ CREATE TABLE users (
   full_name VARCHAR,
   username VARCHAR UNIQUE,
   password_digest VARCHAR,
-  post VARCHAR
+  post VARCHAR,
+  following VARCHAR,
+  followers VARCHAR,
+  Likes INTEGER
 );
