@@ -59,7 +59,12 @@ class NewUser extends React.Component {
     return (
         <div className="signup-container">
       <div id="register-box">
-        <h1>Hello new user! Please, register below.</h1>
+
+        <h1 id="app-name" > Self-ish </h1>
+        <h4>Sign Up to share photos and videos of yourself-ish with your friends.</h4>
+        <button type="button" class="button"> Log in with Facebook</button>
+        <p> -------------- OR -------------- </p>
+        <form onSubmit={this.handleSubmit}>
           <input
             className="input-box"
             name="email"
@@ -101,7 +106,11 @@ class NewUser extends React.Component {
             maxLength="30"
           />
           <br />
-          <input onClick={this.handleSubmit} type="submit" value="Submit"/>
+
+          <input type="submit" value="Submit"/>
+        </form>
+        <p id="signup-agreement"> By signing up, you agree to our Terms &amp; Privacy Policy</p>
+
         <br />
         {message}
       </div>
