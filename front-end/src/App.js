@@ -12,7 +12,7 @@ class App extends Component {
           {" "}
           <Link to="/">Log In</Link>
         </nav>
-        <h1>Self-ish</h1>
+        <h1 className="header-title">Self-ish</h1>
         <Route path='/' component={Users} />
       </div>
     );
