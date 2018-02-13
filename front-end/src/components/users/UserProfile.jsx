@@ -23,19 +23,30 @@ class UserProfile extends React.Component {
     let { modalIsOpen } = this.state;
     return (
       <div className="header-bar">
-        <div>
-          <h1 className="header-title">Self-ish!</h1>
+        <div className="left-top">
+          <h1 className="header-title">Self-ish</h1>
+        </div>
+        <div className="search-box">
+          <input type="search" name="search" id="search" placeholder="Search" />
+        </div>
+        <div className="right-top">
+          <div className="user-buttons">
+            <Modal isOpen={modalIsOpen} contentLabel="New Post">
+              <NewPost toggleModal={this.toggleModal} />
+            </Modal>
 
-          <button><i class="fas fa-eye fa-3x"></i></button>
-          <Modal isOpen={modalIsOpen} contentLabel="New Post">
-            <NewPost toggleModal={this.toggleModal} />
-          </Modal>
-  
-          <button><Link to="/users/editprofile"><i class="far fa-edit fa-3x"></i></Link></button>
-            <button onClick={this.toggleModal} className="newPost">
-              <i class="fa fa-plus-square fa-3x" />
+            <button>
+              <Link to="/users/editprofile">
+                <i class="far fa-user fa-2x" />
+              </Link>
             </button>
-            <button onClick={logout}><i class="fas fa-sign-out-alt fa-3x"></i></button>
+            <button onClick={this.toggleModal} className="newPost">
+              <i class="fa fa-plus-square fa-2x" />
+            </button>
+            <button onClick={logout}>
+              <i class="fas fa-sign-out-alt fa-2x" />
+            </button>
+          </div>
         </div>
       </div>
     );
