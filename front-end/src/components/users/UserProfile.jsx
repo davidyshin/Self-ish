@@ -26,16 +26,16 @@ class UserProfile extends React.Component {
         <div>
           <h1 className="header-title">Self-ish!</h1>
 
-          <button>View Feed</button>
+          <button><i class="fas fa-eye fa-3x"></i></button>
           <Modal isOpen={modalIsOpen} contentLabel="New Post">
             <NewPost toggleModal={this.toggleModal} />
           </Modal>
   
-          <button><Link to="/users/editprofile">Edit Profile</Link></button>
+          <button><Link to="/users/editprofile"><i class="far fa-edit fa-3x"></i></Link></button>
             <button onClick={this.toggleModal} className="newPost">
-              <i class="fa fa-plus-square" />
+              <i class="fa fa-plus-square fa-3x" />
             </button>
-            <button onClick={logout}>LOGOUT :(</button>
+            <button onClick={logout}><i class="fas fa-sign-out-alt fa-3x"></i></button>
         </div>
       </div>
     );
