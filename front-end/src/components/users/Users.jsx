@@ -23,7 +23,6 @@ class Users extends React.Component {
         axios
             .get('/users/getUser')
             .then((res) => {
-                console.log(`res`, res)
                 this.setState({
                     user: res.data.user,
                     active: true
