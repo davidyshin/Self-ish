@@ -7,8 +7,6 @@ import axios from 'axios'
 
 
 
-
-
 class Users extends React.Component {
     constructor() {
         super();
@@ -65,6 +63,7 @@ class Users extends React.Component {
 
 
     renderProfile = () => {
+        console.log("HITTING")
         const { active, user } = this.state
         if (active === false) {
             return (
@@ -85,7 +84,7 @@ class Users extends React.Component {
             <div>
                 <Switch>
                     <Route exact path='/' component={NewUser} />
-                    <Route path='/users/login' component={this.renderProfile} />
+                    <Route exact path='/users/login' component={this.renderProfile} />
                 </Switch>
             </div>
         )

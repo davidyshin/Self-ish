@@ -1,10 +1,8 @@
 import React from 'react'
-import Modal from 'react-modal';
 
 
 
 const UserProfile = ({ user, logout }) => {
-    console.log(user)
     return (
         <div>
             <header>
