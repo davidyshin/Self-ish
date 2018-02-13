@@ -39,7 +39,7 @@ class LoginUser extends React.Component {
                 this.setState({
                     username: '',
                     password: '',
-                    message: 'Username / Password Incorret'
+                    message: 'Username / Password Incorrect'
                 })
             })
 
