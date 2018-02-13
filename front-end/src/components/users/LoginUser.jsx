@@ -51,7 +51,7 @@ class LoginUser extends React.Component {
     render() {
         const { username, password, message } = this.state
         return (
-            <div>
+            <div className="login-container">
                 <h1>LOG IN BRO</h1>
                 Username:
                 <input name="username" type="text" value={username} onChange={this.handleInput} />
