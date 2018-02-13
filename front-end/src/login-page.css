@@ -13,7 +13,7 @@ body {
     height: 100%;
 }
 
-.signup-container {
+.login-container {
     font-family: 'Lato', sans-serif;
     text-align: center;
     width: 300px;
@@ -28,14 +28,14 @@ body {
     
 }
 
-#register-box,
-#login-box {
+#login-box,
+#signup-box {
     background-color: rgba(255, 255, 255, 0.52);
     border: .5px solid lightgrey;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#register-box {
+#login-box {
     margin-bottom: 10px;
 }
 
