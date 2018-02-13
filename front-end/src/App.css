@@ -1,9 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Pacifico|Poiret+One");
 
-html {
+body {
   width: 100%;
   height: 100%;
-  background-image: url("/bg2.jpg");
   text-align: center;
 }
 
@@ -33,6 +32,8 @@ html {
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
 }
+
+
 
 /* The Close Button */
 .close {

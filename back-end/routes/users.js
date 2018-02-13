@@ -16,5 +16,13 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 router.get('/logout',loginRequired, db.logoutUser)
 router.get('/all', db.getAllUsers)
 router.get('/getUser', loginRequired, db.getUser)
+router.post('/addPost', loginRequired, db.addPost)
+router.patch('/updateLikes', loginRequired, db.updateLikes)
+router.get('/getUserLikes', loginRequired, db.getUserLikes)
+router.get('/getAllPost', loginRequired, db.getAllPost)
+router.get('/userPost', loginRequired, db.getUserPost)
+router.post('/addPost', loginRequired, db.addPost)
+
+
 // router.get('/getFeed', loginRequired, db.getFeed)
 module.exports = router;

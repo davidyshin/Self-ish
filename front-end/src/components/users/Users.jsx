@@ -8,8 +8,6 @@ import axios from 'axios'
 
 
 
-
-
 class Users extends React.Component {
     constructor() {
         super();
@@ -26,7 +24,6 @@ class Users extends React.Component {
         axios
             .get('/users/getUser')
             .then((res) => {
-                console.log(`res`, res)
                 this.setState({
                     user: res.data.user,
                     active: true
@@ -66,6 +63,7 @@ class Users extends React.Component {
 
 
     renderProfile = () => {
+        console.log("HITTING")
         const { active, user } = this.state
         if (active === false) {
             return (
@@ -89,6 +87,7 @@ class Users extends React.Component {
                     <Route exact path='/' component={NewUser} />
                     <Route exact path='/users/login' component={LoginUser} />
                     <Route exact path='/users/editprofile' component={EditProfile} />
+
                 </Switch>
             </div>
         )
