@@ -1,52 +1,60 @@
+
 import React from 'react'
 import { Route, Link, Switch } from 'react-router-dom'
 import NewUser from './NewUser'
+import EditProfile from "./EditProfile";
 import LoginUser from './LoginUser'
 import UserProfile from './UserProfile'
 import Feed from './feed'
 import axios from 'axios'
 
 
-
 class Users extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            user: '',
-            active: false,
-        }
-        this.allUsers = []
-    }
+  constructor() {
+    super();
+    this.state = {
+      user: "",
+      active: false
+    };
+    this.allUsers = [];
+  }
 
-
-    componentDidMount() {
-        const { user } = this.state
-        axios
-            .get('/users/getUser')
-            .then((res) => {
-                this.setState({
-                    user: res.data.user,
-                    active: true
-                })
-            })
-            .catch((err) => {
-                console.log(`errrr`, err)
-            })
-    }
-
-
-
-    UserFound = (user) => {
+  componentDidMount() {
+    const { user } = this.state;
+    axios
+      .get("/users/getUser")
+      .then(res => {
         this.setState({
-            user: user
-        })
-    }
+          user: res.data.user,
+          active: true
+        });
+      })
+      .catch(err => {
+        console.log(`errrr`, err);
+      });
+  }
 
-    isActive = () => {
+  UserFound = user => {
+    this.setState({
+      user: user
+    });
+  };
+
+  isActive = () => {
+    this.setState({
+      active: !this.state.active
+    });
+  };
+
+  logOut = () => {
+    axios
+      .get("/users/logout")
+      .then(res => {
         this.setState({
             active: !this.state.active
-        })
-    }
+            })
+    })
+  }
 
     logOut = () => {
         axios
@@ -102,11 +110,14 @@ class Users extends React.Component {
                     <Route exact path='/' component={NewUser} />
                     <Route exact path='/feed' render={this.renderFeed} />
                     <Route exact path='/profile' component={this.renderProfile} />
+                  <Route exact path="/users/editprofile" component={EditProfile} />
                 </Switch>
             </div>
         )
+
     }
-}
+  }
 
+ 
 
-export default Users
+export default Users;

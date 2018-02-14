@@ -29,33 +29,35 @@ class UserProfile extends React.Component {
     let { user, logout } = this.props
     let { modalIsOpen } = this.state
 
-
     return (
-      <div>
-        <header>
-          <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-          />
-        </header>
-        <div className="header-bar">
+      <div className="header-bar">
+        <div className="left-top">
           <h1 className="header-title">Self-ish</h1>
         </div>
-        <h2>{user}'s Feed!</h2>
-        <button><Link to='/feed' >My Feed</Link></button>
-        <button>Edit Profile</button>
-        <Modal isOpen={modalIsOpen} contentLabel="New Post">
-          <NewPost toggleModal={this.toggleModal} />
-        </Modal>
-        <button onClick={this.toggleModal} className="newPost">
-          <i class="fa fa-plus-square" />
-        </button>
+        <div className="search-box">
+          <input type="search" name="search" id="search" placeholder="Search" />
+        </div>
+        <div className="right-top">
+          <div className="user-buttons">
+            <Modal isOpen={modalIsOpen} contentLabel="New Post">
+              <NewPost toggleModal={this.toggleModal} />
+            </Modal>
 
-        <button onClick={logout}>LOGOUT :(</button>
-        <br />
+            <button>
+              <Link to="/users/editprofile">
+                <i class="far fa-user fa-2x" />
+              </Link>
+            </button>
+            <button onClick={this.toggleModal} className="newPost">
+              <i class="fa fa-plus-square fa-2x" />
+            </button>
+            <button onClick={logout}>
+              <i class="fas fa-sign-out-alt fa-2x" />
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
 }
-
 export default UserProfile;

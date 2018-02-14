@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Cinzel+Decorative:400,700|Lato:400,400i,700,700i');
+
+/* 
+font-family: 'Cinzel Decorative', cursive;
+font-family: 'Lato', sans-serif; 
+*/
+
+.header-bar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-bottom: 1px solid lightgrey;
+  height: 40px;
+
+}
+
+
+
+.left-top {
+  padding-left: 15px;
+}
+
+.header-title {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 25px;
+  padding-top: 5px;
+}
+
+.search-box{
+  padding-top: 10px;
+  padding-left: 175px;
+  padding-right: 175px;
+}
+
+.user-buttons {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+button {
+  border: none;
+  padding: 0 15px 0 15px;
+  background-color: white;
+  color: black;
+}
+
+a {
+  color:black;
+}
+
