@@ -5,7 +5,6 @@ import NewUser from './NewUser'
 import EditProfile from "./EditProfile";
 import LoginUser from './LoginUser'
 import UserHome from './UserHome'
-import Feed from './Feed'
 import axios from 'axios'
 
 

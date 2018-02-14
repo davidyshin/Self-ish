@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 import NewPost from "./NewPost"
-import Feed from "./Feed"
+import UserFeed from "./UserFeed"
 import { Redirect } from 'react-router'
 import { Link, Switch, Route } from 'react-router-dom'
 import "../../user-home.css";
@@ -13,7 +13,6 @@ class UserHome extends React.Component {
     super()
     this.state = {
       modalIsOpen: false,
-      feed: false
     }
   }
   toggleModal = () => {
@@ -62,7 +61,7 @@ class UserHome extends React.Component {
           </div>
         </div>
       </div>
-      <Feed/>
+      <UserFeed/>
       </div>
     );
   }

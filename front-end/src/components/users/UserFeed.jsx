@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { Link, Switch, Route } from 'react-router-dom'
 
-class Feed extends React.Component {
+class UserFeed extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -51,4 +51,4 @@ class Feed extends React.Component {
 }
 
 
-export default Feed
+export default UserFeed
