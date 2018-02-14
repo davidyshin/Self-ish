@@ -24,7 +24,7 @@ function registerUser(req, res, next) {
 
 function addPost(req, res, next) {
     db
-        .none('UPDATE users SET post=${post} WHERE username=${username}', { post: req.body.post, username: req.body.username })
+        .none('UPDATE users SET post=${post} WHERE username=${username}', { post: req.body.post, username: req.user })
         .then(() => {
             res.status(200)
                 .json({
