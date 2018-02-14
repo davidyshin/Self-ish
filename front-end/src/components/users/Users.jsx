@@ -84,7 +84,18 @@ class Users extends React.Component {
         }
 
     }
-
+    renderNewUser = () => {
+        const { active, user } = this.state
+        if (active === false) {
+            return (
+                <NewUser />
+            )
+        } else {
+            return (
+                <UserHome user={user.username} logout={this.logOut} />
+            )
+        }
+    }
 
 
     render() {
@@ -93,6 +104,7 @@ class Users extends React.Component {
             <div>
                 <Switch>
                     <Route exact path='/' component={this.renderHome} />
+                    <Route exact path='/register' component={this.renderNewUser} />
                     {/* <Route exact path='/profile' component={this.renderProfile} /> */}
                   {/* <Route exact path="/profile/editprofile" component={this.renderEditProfile} /> */}
                 </Switch>
