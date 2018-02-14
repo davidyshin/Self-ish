@@ -34,9 +34,11 @@ class UserFeed extends React.Component {
 
     render() {
         const { users, post, likes, allUsers } = this.state
+        const {user} = this.props
         console.log(`yerrr`, allUsers)
         return (
             <div>
+                <h1>{user.username}'s Feed</h1>
                 {allUsers.map(user =>
                     <div>
                         <h1>{user.username}</h1>
@@ -44,7 +46,6 @@ class UserFeed extends React.Component {
                         <p>{user.likes}</p>
                     </div>
                 )}
-                <button><Link to='/profile'>MY profile</Link></button>
             </div>
         )
     }
