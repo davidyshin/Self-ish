@@ -13,6 +13,9 @@ class Feed extends React.Component {
         }
     }
 
+
+
+    
     componentDidMount() {
         axios
             .get('/users/getAllinfo')
