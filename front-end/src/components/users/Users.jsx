@@ -4,8 +4,8 @@ import { Route, Link, Switch } from 'react-router-dom'
 import NewUser from './NewUser'
 import EditProfile from "./EditProfile";
 import LoginUser from './LoginUser'
-import UserProfile from './UserProfile'
-import Feed from './feed'
+import UserHome from './UserHome'
+import Feed from './Feed'
 import axios from 'axios'
 
 
@@ -70,7 +70,7 @@ class Users extends React.Component {
     }
 
 
-    renderProfile = () => {
+    renderHome = () => {
        
         const { active, user } = this.state
         if (active === false) {
@@ -79,26 +79,11 @@ class Users extends React.Component {
             )
         } else {
             return (
-                <UserProfile user={user.username} logout={this.logOut} />
+                <UserHome user={user.username} logout={this.logOut} />
             )
         }
 
     }
-
-    renderFeed = () => {
-        const { active, user } = this.state 
-        if(active === false || !user) {
-            return (
-            <LoginUser active={this.isActive} user={this.UserFound} />
-            )
-        } else {
-            return (
-                <Feed />
-            )
-        }
-    }
-
-
 
 
 
@@ -107,10 +92,9 @@ class Users extends React.Component {
         return (
             <div>
                 <Switch>
-                    <Route exact path='/' component={NewUser} />
-                    <Route exact path='/feed' render={this.renderFeed} />
-                    <Route exact path='/profile' component={this.renderProfile} />
-                  <Route exact path="/users/editprofile" component={EditProfile} />
+                    <Route exact path='/' component={this.renderHome} />
+                    {/* <Route exact path='/profile' component={this.renderProfile} /> */}
+                  {/* <Route exact path="/profile/editprofile" component={this.renderEditProfile} /> */}
                 </Switch>
             </div>
         )

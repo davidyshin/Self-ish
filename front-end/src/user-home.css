@@ -21,13 +21,12 @@ font-family: 'Lato', sans-serif;
 
 
 .left-top {
-  padding-left: 15px;
-}
-
-.header-title {
-  font-family: 'Cinzel Decorative', cursive;
-  font-size: 25px;
   padding-top: 5px;
+  padding-left: 15px;
+  font-family: 'Cinzel Decorative', cursive;
+  text-decoration: none;  
+  font-weight: bold;
+  font-size: 25px;
 }
 
 .search-box{
@@ -48,8 +47,12 @@ button {
   background-color: white;
   color: black;
 }
+button:active {
+  outline: none;
+}
 
 a {
   color:black;
+  text-decoration: none;
 }
 

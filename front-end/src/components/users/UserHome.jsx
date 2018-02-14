@@ -1,12 +1,14 @@
 import React from "react";
 import Modal from "react-modal";
 import NewPost from "./NewPost"
+import Feed from "./Feed"
 import { Redirect } from 'react-router'
 import { Link, Switch, Route } from 'react-router-dom'
+import "../../user-home.css";
 
 
 
-class UserProfile extends React.Component {
+class UserHome extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -30,9 +32,10 @@ class UserProfile extends React.Component {
     let { modalIsOpen } = this.state
 
     return (
+      <div className="user-home">
       <div className="header-bar">
         <div className="left-top">
-          <h1 className="header-title">Self-ish</h1>
+          <Link to ="/"><i class="fas fa-camera-retro"></i>{"    "}Self-ish</Link>
         </div>
         <div className="search-box">
           <input type="search" name="search" id="search" placeholder="Search" />
@@ -48,16 +51,20 @@ class UserProfile extends React.Component {
                 <i class="far fa-user fa-2x" />
               </Link>
             </button>
+
             <button onClick={this.toggleModal} className="newPost">
               <i class="fa fa-plus-square fa-2x" />
             </button>
+            
             <button onClick={logout}>
               <i class="fas fa-sign-out-alt fa-2x" />
             </button>
           </div>
         </div>
       </div>
+      <Feed/>
+      </div>
     );
   }
 }
-export default UserProfile;
+export default UserHome;
