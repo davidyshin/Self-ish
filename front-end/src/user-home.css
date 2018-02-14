@@ -7,6 +7,8 @@ font-family: 'Lato', sans-serif;
 
 .header-bar {
   width: 100%;
+  position: sticky;
+  top: 0px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -51,7 +53,7 @@ button:active {
   outline: none;
 }
 
-a {
+.header-bar a {
   color:black;
   text-decoration: none;
 }
