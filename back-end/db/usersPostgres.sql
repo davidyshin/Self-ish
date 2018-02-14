@@ -13,5 +13,5 @@ CREATE TABLE users (
   post VARCHAR (8000),
   following VARCHAR,
   followers VARCHAR,
-  Likes INTEGER
+  likes INTEGER
 );
