@@ -34,3 +34,13 @@ CREATE TABLE follows (
 );
 
 
+INSERT INTO users (email, full_name, username, password_digest)
+VALUES ('carolina@carolina.com', 'carolina', 'carolina', 'carolina'),
+          ('michael@michael.com', 'michael', 'michael', 'michael'),
+          ('eddie@eddie.com', 'eddie', 'eddieeddie', 'eddieeddie'),
+          ('newton@newton', 'newton', 'newtonnewton', 'newtonnewton'),
+          ('david@david', 'test1', 'test1', 'daviddavid'),
+          ('asdf@david', 'test2', 'test2', 'daviddavid'),
+          ('test3@david', 'test3', 'test3', 'daviddavid'),
+          ('test4@david', 'test4', 'test4', 'daviddavid')
+
