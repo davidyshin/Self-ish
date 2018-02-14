@@ -8,6 +8,7 @@ class Profile extends React.Component {
 
   render() {
     const { user } = this.props;
+    console.log("profile consolelog", user)
     return (
       <div>
         <h1>{user.username}</h1>
