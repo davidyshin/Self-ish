@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Route, Link, Switch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import "../../register-page.css";
 
 class NewUser extends React.Component {
@@ -22,15 +22,19 @@ class NewUser extends React.Component {
   };
 
   handleSubmit = e => {
-      e.preventDefault()
+    e.preventDefault()
     const { username, password, email, fullName } = this.state;
-    if (username.length <= 6) {
+    if (username.length < 4 || password.length < 4) {
       this.setState({
-        message: "Username must be at least 7 characters"
+        message: "Username and password must be at least 3 characters"
       });
+    } else if (!password || !email || !fullName) {
+      this.setState({
+        message: 'Please enter a password, email and full name.'
+      })
     } else {
       axios
-        .post("/users/new", {
+        .post("/users/new", { 
           email: email,
           fullName: fullName,
           username: username,
@@ -58,66 +62,66 @@ class NewUser extends React.Component {
   render() {
     const { email, fullName, username, password, message } = this.state;
     return (
-        <div className="signup-container">
-      <div id="register-box">
+      <div className="signup-container">
+        <div id="register-box">
 
-        <h1 id="app-name" > Self-ish </h1>
-        <h4>Sign Up to share photos and videos of yourself-ish with your friends.</h4>
-        <button type="button" class="button"> Log in with Facebook</button>
-        <p> -------------- OR -------------- </p>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            className="input-box"
-            name="email"
-            type="email"
-            value={email}
-            onChange={this.handleInput}
-            placeholder="Email"
-            maxLength="30"
-          />
-          <br />
-          <input
-            className="input-box"
-            name="fullName"
-            type="text"
-            value={fullName}
-            onChange={this.handleInput}
-            placeholder="Full Name"
-            maxLength="30"
-          />
-          <br />
-          <input
-            className="input-box"
-            name="username"
-            type="text"
-            value={username}
-            onChange={this.handleInput}
-            placeholder="Username"
-            maxLength="30"
-          />
+          <h1 id="app-name" > Self-ish </h1>
+          <h4>Sign Up to share photos and videos of yourself-ish with your friends.</h4>
+          <button type="button" class="button"> Log in with Facebook</button>
+          <p> -------------- OR -------------- </p>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              className="input-box"
+              name="email"
+              type="email"
+              value={email}
+              onChange={this.handleInput}
+              placeholder="Email"
+              maxLength="30"
+            />
+            <br />
+            <input
+              className="input-box"
+              name="fullName"
+              type="text"
+              value={fullName}
+              onChange={this.handleInput}
+              placeholder="Full Name"
+              maxLength="30"
+            />
+            <br />
+            <input
+              className="input-box"
+              name="username"
+              type="text"
+              value={username}
+              onChange={this.handleInput}
+              placeholder="Username"
+              maxLength="30"
+            />
+
+            <br />
+            <input
+              className="input-box"
+              name="password"
+              type="password"
+              value={password}
+              onChange={this.handleInput}
+              placeholder="Password"
+              maxLength="30"
+            />
+            <br />
+
+            <input type="submit" value="Submit" />
+          </form>
+          <p id="signup-agreement"> By signing up, you agree to our Terms &amp; Privacy Policy</p>
 
           <br />
-          <input
-            className="input-box"
-            name="password"
-            type="password"
-            value={password}
-            onChange={this.handleInput}
-            placeholder="Password"
-            maxLength="30"
-          />
-          <br />
-
-          <input type="submit" value="Submit"/>
-        </form>
-        <p id="signup-agreement"> By signing up, you agree to our Terms &amp; Privacy Policy</p>
-
-        <br />
-        {message}
-      </div>
-      <div id="login-box">
-          <p>Already a Self-ish member? <Link to="/users/login">Log in</Link></p>
-          </div>
+          {message}
+        </div>
+        <div id="login-box">
+          <p>Already a Self-ish member? <Link to="/profile">Log in</Link></p>
+        </div>
       </div>
     );
   }

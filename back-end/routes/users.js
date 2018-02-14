@@ -22,6 +22,7 @@ router.get('/getUserLikes', loginRequired, db.getUserLikes)
 router.get('/getAllPost', loginRequired, db.getAllPost)
 router.get('/userPost', loginRequired, db.getUserPost)
 router.post('/addPost', loginRequired, db.addPost)
+router.get('/getAllInfo', loginRequired, db.getAllInfo)
 
 
 // router.get('/getFeed', loginRequired, db.getFeed)

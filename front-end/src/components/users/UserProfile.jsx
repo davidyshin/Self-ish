@@ -1,26 +1,34 @@
 import React from "react";
 import Modal from "react-modal";
-import { Route, Link, Switch } from "react-router-dom";
-import NewPost from "./NewPost";
-import "../../user-profile.css";
+import NewPost from "./NewPost"
+import { Redirect } from 'react-router'
+import { Link, Switch, Route } from 'react-router-dom'
+
+
 
 class UserProfile extends React.Component {
   constructor() {
-    super();
+    super()
     this.state = {
-      modalIsOpen: false
-    };
+      modalIsOpen: false,
+      feed: false
+    }
   }
   toggleModal = () => {
-    let { modalIsOpen } = this.state;
+    let { modalIsOpen } = this.state
     this.setState({
       modalIsOpen: !modalIsOpen
-    });
-  };
+    })
+  }
+
+
+
+
 
   render() {
-    let { user, logout } = this.props;
-    let { modalIsOpen } = this.state;
+    let { user, logout } = this.props
+    let { modalIsOpen } = this.state
+
     return (
       <div className="header-bar">
         <div className="left-top">
