@@ -29,8 +29,6 @@ class Feed extends React.Component {
 
 
 
-
-
     render() {
         const { users, post, likes, allUsers } = this.state
         console.log(`yerrr`, allUsers)
