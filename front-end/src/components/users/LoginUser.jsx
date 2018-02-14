@@ -71,7 +71,7 @@ class LoginUser extends React.Component {
                 </div>
 
                 <div id="signup-box">
-                    <p> Not a Self-ish member? <Link to="/register"> Sign Up</Link></p>
+                    <p> Not a Self-ish member? <Link to="/"> Sign Up</Link></p>
                  </div>
             </div>
         )

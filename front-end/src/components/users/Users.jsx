@@ -74,7 +74,7 @@ class Users extends React.Component {
         const { active, user } = this.state
         if (active === false) {
             return (
-                <LoginUser active={this.isActive} user={this.UserFound} />
+                <NewUser />
             )
         } else {
             return (
@@ -83,11 +83,11 @@ class Users extends React.Component {
         }
 
     }
-    renderNewUser = () => {
+    renderLogin = () => {
         const { active, user } = this.state
         if (active === false) {
             return (
-                <NewUser />
+                <LoginUser active={this.isActive} user={this.UserFound} />
             )
         } else {
             return (
@@ -103,7 +103,7 @@ class Users extends React.Component {
             <div>
                 <Switch>
                     <Route exact path='/' component={this.renderHome} />
-                    <Route exact path='/register' component={this.renderNewUser} />
+                    <Route exact path='/login' component={this.renderLogin} />
                     {/* <Route exact path='/profile' component={this.renderProfile} /> */}
                   {/* <Route exact path="/profile/editprofile" component={this.renderEditProfile} /> */}
                 </Switch>

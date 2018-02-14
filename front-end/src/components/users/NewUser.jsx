@@ -120,7 +120,7 @@ class NewUser extends React.Component {
           {message}
         </div>
         <div id="login-box">
-          <p>Already a Self-ish member? <Link to="/">Log in</Link></p>
+          <p>Already a Self-ish member? <Link to="/login">Log in</Link></p>
         </div>
       </div>
     );
