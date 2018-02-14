@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
 import Home from "./components/users/Home";
-import LoginPage from "./components/login-page/LoginPage";
+import LoginUser from "./components/login-page/LoginUser";
 import NewUser from "./components/login-page/NewUser";
-import { Route, Link, Switch } from "react-router-dom";
+import { Route, Link, Switch, Redirect } from "react-router-dom";
 
 class App extends Component {
   constructor() {
@@ -58,10 +58,28 @@ class App extends Component {
 
   renderHome = () => {
     const { active, user } = this.state;
+
     if (active === false) {
-      return <LoginPage active={this.isActive} user={this.UserFound} />;
+      return <NewUser />;
     } else {
       return <Home user={user} logOut={this.logOut} />;
+    }
+  };
+
+  renderNewUser = () => {
+    const { active, user } = this.state;
+    if (active === false) {
+      return <NewUser />;
+    } else {
+      return <Redirect to="/" />;
+    }
+  };
+  renderLogin = () => {
+    const { active, user } = this.state;
+    if (active === false) {
+      return <LoginUser active={this.isActive} user={this.UserFound} />;
+    } else {
+      return <Redirect to="/" />;
     }
   };
 
@@ -69,7 +87,12 @@ class App extends Component {
     const { active } = this.state;
     return (
       <div>
+        <Switch>
+          <Route path="/home" component={this.renderHome} />
+          <Route path="/register" component={this.renderNewUser} />
+          <Route path="/login" component={this.renderLogin} />
           <Route path="/" component={this.renderHome} />
+        </Switch>
       </div>
     );
   }

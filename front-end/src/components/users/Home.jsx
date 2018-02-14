@@ -1,9 +1,10 @@
 import React from "react";
 import Modal from "react-modal";
-import NewPost from "./NewPost"
-import UserFeed from "./UserFeed"
-import axios from "axios"
-import { Link, Switch, Route } from 'react-router-dom'
+import NewPost from "./NewPost";
+import UserFeed from "./UserFeed";
+import Profile from "./Profile";
+import axios from "axios";
+import { Link, Switch, Route } from "react-router-dom";
 import "../../user-home.css";
 
 class Home extends React.Component {
@@ -20,38 +21,18 @@ class Home extends React.Component {
     });
   };
 
-
-
-  // renderHome = () => {
-
-  //     const { active, user } = this.state
-  //     if (active === false) {
-  //         return (
-  //             <NewUser />
-  //         )
-  //     } else {
-  //         return (
-  //             <UserHome user={user.username} logout={this.logOut} />
-  //         )
-  //     }
-
-  // }
-  // renderLogin = () => {
-  //     const { active, user } = this.state
-  //     if (active === false) {
-  //         return (
-  //             <LoginUser active={this.isActive} user={this.UserFound} />
-  //         )
-  //     } else {
-  //         return (
-  //             <UserHome user={user.username} logout={this.logOut} />
-  //         )
-  //     }
-  // }
+  renderProfile = () => {
+    const { user } = this.props;
+    return <Profile user={user} />;
+  };
+  renderFeed = () => {
+    const { user } = this.props;
+    return <UserFeed user={user} />;
+  };
 
   render() {
-    const {modalIsOpen} = this.state
-    const {logOut} = this.props
+    const { modalIsOpen } = this.state;
+    const { logOut } = this.props;
     console.log(`user`, this.state);
     return (
       <div className="user-home">
@@ -92,6 +73,8 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
+        <Route exact path="/" component={this.renderFeed} />
+        <Route exact path="/profile" component={this.renderProfile} />
       </div>
     );
   }
