@@ -21,7 +21,7 @@ router.get('/logout',loginRequired, db.logoutUser)
 
 
 // FEED ROUTES
-// router.get('/getFeed', loginRequired, db.getFeed)
+
 
 
 
@@ -33,23 +33,24 @@ router.get('/getUserPost/:id', db.getUserPost)
 
 
 // LIKES ROUTES
+router.get('addLikes', db.addLikes)
+router.get('getPostLikes', db.getPostLikes)
 
 
-// router.patch('/updateLikes', loginRequired, db.updateLikes)
-// router.get('/getUserLikes', loginRequired, db.getUserLikes)
 
 
 
 // // FOLLOWERS ROUTES
-router.get('/getFollowers', db.getFollowers)
-router.post('/addFollowers/:id', loginRequired, db.addFollowers)
+router.post('/addFollower/:id', loginRequired, db.addFollowers)
+router.get('/getFollowersCount/:id', db.getfollowersCount)
+router.get('/getFollowersIDs/:id', db.getFollowersIDs)
+router.get('/getFolloweesCount/:id', db.getFolloweesCount)
+router.get('/getFollowees/:id', db.getFollowees)
 
 
-// router.get('/getAllPost', loginRequired, db.getAllPost)
-
-// router.post('/addPost', loginRequired, db.addPost)
-// router.get('/getAllInfo', loginRequired, db.getAllInfo)
 
 
-// router.get('/getFeed', loginRequired, db.getFeed)
+
+
+
 module.exports = router;
