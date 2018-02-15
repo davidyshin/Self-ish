@@ -29,11 +29,12 @@ router.get('/getUser', loginRequired, db.getUser)
 // POST ROUTES
 router.post('/newPost', loginRequired, db.newPost)
 router.get('/getUserPost/:id', db.getUserPost)
+router.get('/getPostCount/:id', loginRequired, db.getUserPostCount)
 
 
 // LIKES ROUTES
-router.get('addLikes', db.addLikes)
-router.get('getPostLikes', db.getPostLikes)
+router.get('/addLikes', db.addLikes)
+router.get('/getPostLikes', db.getPostLikes)
 
 
 
@@ -42,7 +43,7 @@ router.get('getPostLikes', db.getPostLikes)
 // // FOLLOWERS ROUTES
 router.post('/addFollower/:id', loginRequired, db.addFollowers)
 router.get('/getFollowersCount/:id', db.getFollowersCount)
-router.get('/getFollowersIDs/:id', db.getFollowersIDs)
+router.get('/getFollowers/:id', db.getFollowers)
 router.get('/getFolloweesCount/:id', db.getFolloweesCount)
 router.get('/getFollowees/:id', db.getFollowees)
 
