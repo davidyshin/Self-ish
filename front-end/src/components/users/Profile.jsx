@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, Switch, Route } from "react-router-dom";
+import axios from "axios";
 import "../../user-profile.css";
 
 const posts = [
@@ -63,11 +64,32 @@ const posts = [
 class Profile extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      user: "",
+      active: true
+    };
   }
 
+  componentDidMount() {
+    const { user } = this.state;
+    axios
+      .get("/users/getUser")
+      .then(res => {
+        this.setState({
+          user: res.data.user,
+          active: true
+        });
+      })
+      .catch(err => {
+        console.log(`errrr`, err);
+      });
+
+    axios.get("/users/getFollowers").then(res => {
+      console.log(res);
+    });
+  }
   render() {
-    const { user } = this.props;
+    const { user } = this.state;
     console.log("profile consolelog", user);
     return (
       <div className="profile-container">
@@ -102,12 +124,12 @@ class Profile extends React.Component {
           </div>
         </div>
         <div className="user-posts">
-          {posts.map((post) => {
+          {posts.map(post => {
             return (
-            <div className="post-image">
-              <img src={post.post_image} alt="post-image" />
-            </div>
-            )
+              <div className="post-image">
+                <img src={post.post_image} alt="post-image" />
+              </div>
+            );
           })}
         </div>
       </div>

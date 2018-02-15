@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
+
 .profile-container {
   height: 100%;
   width: 100%;
@@ -6,6 +8,7 @@
   margin: 0 auto;
   background-color: #fafafa;
   border: 0.5px solid lightgrey;
+  font-family: 'Open Sans', sans-serif;
 }
 .pro-pic {
     padding-right: 85px;

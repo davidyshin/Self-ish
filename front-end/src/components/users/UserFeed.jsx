@@ -99,12 +99,14 @@ class UserFeed extends React.Component {
                 src="http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png"
                 alt="USERPROFILEPICTURE"
               />{" "}
-              <p>{user.username}</p>
+              <p className="p-bold">{user.username}</p>
             </div>
-            <h1>{post.user_id}</h1>
             <img src={post.post_image} alt={post.id} />
-            <h3>{post.dates}</h3>
-            <p>{post.caption}</p>
+            <div className="likes-comments"><i class="far fa-heart"></i><i class="far fa-comment"></i></div>            
+            <div className="post-bottom">
+              <p className="p-bold">{user.username}</p>
+              <p className="p-caption">{post.caption}</p>
+            </div>
           </div>
         ))}
       </div>

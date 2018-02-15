@@ -21,7 +21,7 @@ font-family: 'Lato', sans-serif;
   text-align:center;
   justify-content: center;
   align-content: center;
-  background-color: #fafafa;
+  background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-bottom: 1px solid lightgrey;
   height: 45px;
@@ -66,6 +66,13 @@ button {
 }
 button:focus {
   outline: none;
+}
+input[type="search"] {
+  background-color: #fafafa;
+  border: 1px solid lightgrey;
+  height: 22px;
+  width: 175px;
+  text-align: center;
 }
 
 .header-bar a {

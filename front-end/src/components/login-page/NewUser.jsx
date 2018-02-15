@@ -11,7 +11,9 @@ class NewUser extends React.Component {
       fullName: "",
       username: "",
       password: "",
-      message: ""
+      message: "",
+      profile_pic: ""
+      
     };
   }
 
@@ -38,7 +40,8 @@ class NewUser extends React.Component {
           email: email,
           fullName: fullName,
           username: username,
-          password: password
+          password: password,
+          profile_pic: "http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png"
         })
         .then(res => {
           console.log(res);

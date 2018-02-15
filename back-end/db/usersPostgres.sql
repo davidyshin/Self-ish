@@ -9,7 +9,8 @@ CREATE TABLE users (
   email VARCHAR UNIQUE,
   full_name VARCHAR,
   username VARCHAR UNIQUE,
-  password_digest VARCHAR
+  password_digest VARCHAR,
+  profile_pic VARCHAR
 );
 
 CREATE TABLE posts (
