@@ -17,6 +17,8 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 })
 router.get('/logout',loginRequired, db.logoutUser)
 router.get('/getUser', loginRequired, db.getUser)
+router.get('/getSingleUser/:id', db.getSingleUser)
+
 
 
 // FEED ROUTES
