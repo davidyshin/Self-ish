@@ -5,6 +5,7 @@ import Home from "./components/users/Home";
 import LoginUser from "./components/login-page/LoginUser";
 import NewUser from "./components/login-page/NewUser";
 import { Route, Link, Switch, Redirect } from "react-router-dom";
+import EditProfile from "./components/users/EditProfile";
 
 class App extends Component {
   constructor() {
@@ -75,12 +76,22 @@ class App extends Component {
       return <Redirect to="/" />;
     }
   };
+
   renderLogin = () => {
     const { active, user } = this.state;
     if (active === false) {
       return <LoginUser active={this.isActive} user={this.UserFound} />;
     } else {
       return <Redirect to="/" />;
+    }
+  };
+
+  renderEditProfile = () => {
+    const { active, user } = this.state;
+    if (active === false) {
+      return <LoginUser active={this.isActive} user={this.UserFound} />;
+    } else {
+      return <EditProfile/>;
     }
   };
 
@@ -92,7 +103,8 @@ class App extends Component {
           <Route path="/home" component={this.renderHome} />
           <Route path="/register" component={this.renderNewUser} />
           <Route path="/login" component={this.renderLogin} />
-          <Route path="/" component={this.renderHome} />
+          <Route path="/login" component={this.renderLogin} />
+          <Route path="/profile/edit" component={this.renderEditProfile} />
         </Switch>
       </div>
     );
