@@ -4,8 +4,7 @@ import axios from "axios";
 import Modal from "react-modal";
 import "../../user-profile.css";
 
-
-class Profile extends React.Component {
+class UserProfile extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -24,36 +23,38 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    const { user } = this.props;
-    const fetchedStats = {};
-    axios.get(`/users/getFollowersCount/${user.id}`).then(res => {
+    const id = this.props.match.params.id;
+    let fetchedStats = 
+    axios.get(`/users/getFollowersCount/${id}`).then(res => {
       fetchedStats.followingCount = res.data.followerInfo.count;
     });
-    axios.get(`/users/getFolloweesCount/${user.id}`).then(res => {
+    axios.get(`/users/getFolloweesCount/${id}`).then(res => {
       fetchedStats.followersCount = res.data.data.count;
       this.setState({
-        user,
         followersCount: fetchedStats.followersCount,
         followingCount: fetchedStats.followingCount
       });
     });
-    axios.get(`/users/getFollowees/${user.id}`).then(res => {
+    axios.get(`/users/getFollowees/${id}`).then(res => {
       this.setState({
         followers: [...res.data.data]
       });
     });
-    axios.get(`/users/getFollowers/${user.id}`).then(res => {
+    axios.get(`/users/getFollowers/${id}`).then(res => {
       this.setState({
         following: [...res.data.data]
       });
     });
-    axios.get(`/users/getPostCount/${user.id}`).then(res => {
+    axios.get(`/users/getPostCount/${id}`).then(res => {
       this.setState({ postCount: res.data.postCount.count });
     });
 
-    axios.get(`/users/getUserPost/${user.id}`).then(res => {
-      this.setState({posts: res.data.userPost});
+    axios.get(`/users/getUserPost/${id}`).then(res => {
+      this.setState({ posts: res.data.userPost });
     });
+    axios.get(`/users/getSingleUser/${id}`).then(res=>{
+        this.setState({user: res.data.user})
+    })
   }
 
   toggleFollowerModal = () => {
@@ -71,7 +72,6 @@ class Profile extends React.Component {
   Follower = () => {
     const { user } = this.props;
     const { followers } = this.state;
-
     return (
       <div>
         <h1>FOLLOWERS</h1>
@@ -102,22 +102,19 @@ class Profile extends React.Component {
 
   render() {
     const {
-      user,
       followersCount,
       followingCount,
       followerListIsOpen,
       followingListIsOpen,
       postCount,
+      user,
       posts
     } = this.state;
     return (
       <div className="profile-container">
         <div className="user-bar">
           <div className="pro-pic">
-            <img
-              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-              alt="USERPROFILEPIC"
-            />
+            <img src={user.profile_pic} alt="USERPROFILEPIC" />
           </div>
           <div className="user-info">
             <div className="row-one">
@@ -134,7 +131,10 @@ class Profile extends React.Component {
                 <li className="follows-list" onClick={this.toggleFollowerModal}>
                   <span className="count">{followersCount}</span> followers
                 </li>
-                <li className="follows-list" onClick={this.toggleFollowingModal}>
+                <li
+                  className="follows-list"
+                  onClick={this.toggleFollowingModal}
+                >
                   <span className="count">{followingCount}</span> following
                 </li>
               </ul>
@@ -170,4 +170,4 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+export default UserProfile;

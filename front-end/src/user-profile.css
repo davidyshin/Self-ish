@@ -75,7 +75,9 @@
 .stats li {
     display: inline;
     padding-right: 25px;
-    cursor: pointer;
+}
+.follows-list {
+  cursor: pointer;
 }
 .user-posts {
     display: flex;

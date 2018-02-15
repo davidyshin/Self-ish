@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import NewPost from "./NewPost";
 import UserFeed from "./UserFeed";
 import Profile from "./Profile";
+import UserProfile from "./UserProfile"
 import axios from "axios";
 import { Link, Switch, Route } from "react-router-dom";
 import "../../user-home.css";
@@ -77,6 +78,7 @@ class Home extends React.Component {
         </div>
         <Route exact path="/" component={this.renderFeed} />
         <Route exact path="/profile" component={this.renderProfile} />
+        <Route exact path="/user/:id" component={UserProfile} />
       </div>
     );
   }

@@ -46,6 +46,16 @@ function getUser(req, res, next) {
     });
 }
 
+function getSingleUser(req, res, next) {
+  db
+    .one("SELECT * FROM users WHERE id=${id}", {
+      id: req.params.id
+    })
+    .then(data => {
+      res.status(200).json({ user: data });
+    });
+}
+
 function newPost(req, res, next) {
   db
     .none(
@@ -248,5 +258,6 @@ module.exports = {
   getFolloweesCount,
   getFollowees,
   addFollowers,
+  getSingleUser,
   getUser
 };
