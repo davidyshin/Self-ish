@@ -214,8 +214,8 @@ module.exports = {
  addLikes,
  getPostLikes,
  getFollowersCount,
-getfollowersIDs,
-getfolloweesCount,
-getfollowes,
+getFollowersIDs,
+getFolloweesCount,
+getFollowees,
 addFollower
 }
