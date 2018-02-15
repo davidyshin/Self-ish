@@ -37,11 +37,14 @@ function logoutUser(req, res, next) {
 
 // post
 function getUser(req, res, next) {
-    db.one('SELECT * FROM users WHERE username=${username}', {username: req.user.username}).then(data => {
-        res.status(200).json({user: data})
+  db
+    .one("SELECT * FROM users WHERE username=${username}", {
+      username: req.user.username
     })
+    .then(data => {
+      res.status(200).json({ user: data });
+    });
 }
-
 
 function newPost(req, res, next) {
   db
@@ -71,7 +74,7 @@ function newPost(req, res, next) {
 function getUserPost(req, res, next) {
   db
     .any(
-      "SELECT post_image, username, id FROM posts JOIN users ON posts.user_id=users.id WHERE posts.user_id=${id}",
+      "SELECT post_image, username, users.id FROM posts JOIN users ON posts.user_id=users.id WHERE posts.user_id=${id}",
       { id: req.params.id }
     )
     .then(data => {
@@ -82,6 +85,24 @@ function getUserPost(req, res, next) {
     .catch(err => {
       console.log(err);
       res.status(500).json({});
+    });
+}
+
+function getUserPostCount(req, res, next) {
+  db
+    .one("SELECT COUNT(post_image) FROM posts WHERE user_id=${user_id}", {
+      user_id: req.params.id
+    })
+    .then(data => {
+      res.status(200).json({
+        postCount: data
+      });
+    })
+    .catch(err => {
+      console.log(`postCount err`, err);
+      res.status(500).json({
+        postCount: "Could not be found"
+      });
     });
 }
 
@@ -136,11 +157,14 @@ function getFollowersCount(req, res, next) {
     });
 }
 
-function getFollowersIDs(req, res, next) {
+function getFollowers(req, res, next) {
   db
-    .any("SELECT followee_id FROM follows WHERE follower_id=${user}", {
-      user: req.params.id
-    })
+    .any(
+      "SELECT username, followee_id FROM follows JOIN users ON follows.followee_id=users.id WHERE follower_id=${user}",
+      {
+        user: req.params.id
+      }
+    )
     .then(data => {
       res.status(200).json({
         data: data
@@ -174,9 +198,12 @@ function getFolloweesCount(req, res, next) {
 
 function getFollowees(req, res, next) {
   db
-    .any("SELECT follower_id FROM follows WHERE followee_id=${user}", {
-      user: req.params.id
-    })
+    .any(
+      "SELECT username, follower_id FROM follows JOIN users ON follows.follower_id=users.id WHERE followee_id=${user}",
+      {
+        user: req.params.id
+      }
+    )
     .then(data => {
       res.status(200).json({
         data: data
@@ -212,11 +239,12 @@ module.exports = {
   registerUser,
   newPost,
   getUserPost,
+  getUserPostCount,
   addLikes,
   getPostLikes,
   getFollowersCount,
   logoutUser,
-  getFollowersIDs,
+  getFollowers,
   getFolloweesCount,
   getFollowees,
   addFollowers,

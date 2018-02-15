@@ -1,73 +1,23 @@
 import React from "react";
 import { Link, Switch, Route } from "react-router-dom";
 import axios from "axios";
+import Modal from "react-modal";
 import "../../user-profile.css";
 
-const posts = [
-  {
-    id: 0,
-    post_image:
-      "https://camo.mybb.com/e01de90be6012adc1b1701dba899491a9348ae79/687474703a2f2f7777772e6a71756572797363726970742e6e65742f696d616765732f53696d706c6573742d526573706f6e736976652d6a51756572792d496d6167652d4c69676874626f782d506c7567696e2d73696d706c652d6c69676874626f782e6a7067",
-    caption: "hello there",
-    user_id: 7,
-    dates: "1/1/17"
-  },
-  {
-    id: 0,
-    post_image:
-      "https://camo.mybb.com/e01de90be6012adc1b1701dba899491a9348ae79/687474703a2f2f7777772e6a71756572797363726970742e6e65742f696d616765732f53696d706c6573742d526573706f6e736976652d6a51756572792d496d6167652d4c69676874626f782d506c7567696e2d73696d706c652d6c69676874626f782e6a7067",
-    caption: "hello there",
-    user_id: 7,
-    dates: "1/1/17"
-  },
-  {
-    id: 0,
-    post_image:
-      "https://camo.mybb.com/e01de90be6012adc1b1701dba899491a9348ae79/687474703a2f2f7777772e6a71756572797363726970742e6e65742f696d616765732f53696d706c6573742d526573706f6e736976652d6a51756572792d496d6167652d4c69676874626f782d506c7567696e2d73696d706c652d6c69676874626f782e6a7067",
-    caption: "hello there",
-    user_id: 7,
-    dates: "1/1/17"
-  },
-  {
-    id: 0,
-    post_image:
-      "https://camo.mybb.com/e01de90be6012adc1b1701dba899491a9348ae79/687474703a2f2f7777772e6a71756572797363726970742e6e65742f696d616765732f53696d706c6573742d526573706f6e736976652d6a51756572792d496d6167652d4c69676874626f782d506c7567696e2d73696d706c652d6c69676874626f782e6a7067",
-    caption: "hello there",
-    user_id: 7,
-    dates: "1/1/17"
-  },
-  {
-    id: 0,
-    post_image:
-      "https://camo.mybb.com/e01de90be6012adc1b1701dba899491a9348ae79/687474703a2f2f7777772e6a71756572797363726970742e6e65742f696d616765732f53696d706c6573742d526573706f6e736976652d6a51756572792d496d6167652d4c69676874626f782d506c7567696e2d73696d706c652d6c69676874626f782e6a7067",
-    caption: "hello there",
-    user_id: 7,
-    dates: "1/1/17"
-  },
-  {
-    id: 0,
-    post_image:
-      "https://camo.mybb.com/e01de90be6012adc1b1701dba899491a9348ae79/687474703a2f2f7777772e6a71756572797363726970742e6e65742f696d616765732f53696d706c6573742d526573706f6e736976652d6a51756572792d496d6167652d4c69676874626f782d506c7567696e2d73696d706c652d6c69676874626f782e6a7067",
-    caption: "hello there",
-    user_id: 7,
-    dates: "1/1/17"
-  },
-  {
-    id: 0,
-    post_image:
-      "https://camo.mybb.com/e01de90be6012adc1b1701dba899491a9348ae79/687474703a2f2f7777772e6a71756572797363726970742e6e65742f696d616765732f53696d706c6573742d526573706f6e736976652d6a51756572792d496d6167652d4c69676874626f782d506c7567696e2d73696d706c652d6c69676874626f782e6a7067",
-    caption: "hello there",
-    user_id: 7,
-    dates: "1/1/17"
-  }
-];
+
 class Profile extends React.Component {
   constructor() {
     super();
     this.state = {
       user: "",
       followers: "",
+      followersCount: "",
+      followingCount: "",
       following: "",
+      posts: [],
+      postCount: "",
+      followerListIsOpen: false,
+      followingListIsOpen: false,
       likes: "",
       active: true
     };
@@ -77,21 +27,89 @@ class Profile extends React.Component {
     const { user } = this.props;
     const fetchedStats = {};
     axios.get(`/users/getFollowersCount/${user.id}`).then(res => {
-      fetchedStats.followers = res.data.followerInfo.count;
+      fetchedStats.followingCount = res.data.followerInfo.count;
     });
     axios.get(`/users/getFolloweesCount/${user.id}`).then(res => {
-      fetchedStats.following = res.data.data.count;
+      fetchedStats.followersCount = res.data.data.count;
       this.setState({
         user,
-        followers: fetchedStats.followers,
-        following: fetchedStats.following
+        followersCount: fetchedStats.followersCount,
+        followingCount: fetchedStats.followingCount
       });
+    });
+    axios.get(`/users/getFollowees/${user.id}`).then(res => {
+      this.setState({
+        followers: [...res.data.data]
+      });
+    });
+    axios.get(`/users/getFollowers/${user.id}`).then(res => {
+      this.setState({
+        following: [...res.data.data]
+      });
+    });
+    axios.get(`/users/getPostCount/${user.id}`).then(res => {
+      this.setState({ postCount: res.data.postCount.count });
+    });
+
+    axios.get(`/users/getUserPost/${user.id}`).then(res => {
+      this.setState({posts: res.data.userPost});
     });
   }
 
+  toggleFollowerModal = () => {
+    let { followerListIsOpen } = this.state;
+    this.setState({
+      followerListIsOpen: !followerListIsOpen
+    });
+  };
+  toggleFollowingModal = () => {
+    let { followingListIsOpen } = this.state;
+    this.setState({
+      followingListIsOpen: !followingListIsOpen
+    });
+  };
+  Follower = () => {
+    const { user } = this.props;
+    const { followers } = this.state;
+
+    return (
+      <div>
+        <h1>FOLLOWERS</h1>
+        <ul>
+          {followers.map(user => {
+            return <li>{user.username}</li>;
+          })}
+        </ul>
+        <button onClick={this.toggleFollowerModal}>cancel</button>
+      </div>
+    );
+  };
+  Following = () => {
+    const { user } = this.props;
+    const { following } = this.state;
+    return (
+      <div>
+        <h1>FOLLOWING</h1>
+        <ul>
+          {following.map(user => {
+            return <li>{user.username}</li>;
+          })}
+        </ul>
+        <button onClick={this.toggleFollowingModal}>cancel</button>
+      </div>
+    );
+  };
+
   render() {
-    const { user, followers, following } = this.state;
-    console.log(this.state);
+    const {
+      user,
+      followersCount,
+      followingCount,
+      followerListIsOpen,
+      followingListIsOpen,
+      postCount,
+      posts
+    } = this.state;
     return (
       <div className="profile-container">
         <div className="user-bar">
@@ -111,13 +129,13 @@ class Profile extends React.Component {
             <div className="row-two">
               <ul className="stats">
                 <li>
-                  <span className="count">60</span> posts
+                  <span className="count">{postCount}</span> posts
                 </li>
-                <li>
-                  <span className="count">{followers}</span> followers
+                <li onClick={this.toggleFollowerModal}>
+                  <span className="count">{followersCount}</span> followers
                 </li>
-                <li>
-                  <span className="count">{following}</span> following
+                <li onClick={this.toggleFollowingModal}>
+                  <span className="count">{followingCount}</span> following
                 </li>
               </ul>
             </div>
@@ -133,6 +151,20 @@ class Profile extends React.Component {
             );
           })}
         </div>
+        <Modal
+          isOpen={this.state.followerListIsOpen}
+          contentLabel="Follower List"
+          className="follows-modal"
+        >
+          <this.Follower user={user} toggleModal={this.toggleFollowerModal} />
+        </Modal>
+        <Modal
+          isOpen={this.state.followingListIsOpen}
+          contentLabel="Following List"
+          className="follows-modal"
+        >
+          <this.Following user={user} toggleModal={this.toggleFollowingModal} />
+        </Modal>
       </div>
     );
   }
