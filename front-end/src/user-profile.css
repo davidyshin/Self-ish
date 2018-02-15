@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
+
+.profile-container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  padding-top: 50px;
+  margin: 0 auto;
+  background-color: #fafafa;
+  border: 0.5px solid lightgrey;
+  font-family: 'Open Sans', sans-serif;
+}
+.pro-pic {
+    padding-right: 85px;
+}
+.pro-pic img {
+    border: 1px solid #efefef;
+    border-radius: 50%;
+    height: 115px;
+    width: 115px
+}
+.user-bar {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  border-bottom: 1px solid #efefef;
+  font-size: 14px;
+  line-height: 20px;
+  padding-top: 50px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  padding: 0 16px 21px;
+  text-overflow: ellipsis;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+.row-one,
+.row-two,
+.row-three {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  padding: 10px;
+}
+.row-one h1 {
+  margin: 0;
+  padding-right: 25px;
+}
+
+.edit-profile {
+  background-color: #fafafa;
+  border: 1px solid #efefef;
+  height: 25px;
+  font-weight: bold;
+}
+
+.edit-profile a {
+  text-decoration: none;
+  color: black;
+}
+
+.count {
+    font-weight:bold;
+}
+.stats {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.stats li {
+    display: inline;
+    padding-right: 25px;
+}
+.user-posts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-around;
+    width: 70%;
+    margin: 0 auto;
+    padding-top: 30px;
+    position: relative;
+    
+}
+.post-image img{
+    height: 260px;
+    width: 260px;
+    padding-bottom: 15px;
+}

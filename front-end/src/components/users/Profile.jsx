@@ -1,7 +1,7 @@
 import React from "react";
-import axios from "axios";
 import { Link, Switch, Route } from "react-router-dom";
-import "../../user-feed.css";
+import axios from "axios";
+import "../../user-profile.css";
 
 const posts = [
   {
@@ -61,57 +61,80 @@ const posts = [
     dates: "1/1/17"
   }
 ];
-
-class UserFeed extends React.Component {
+class Profile extends React.Component {
   constructor() {
     super();
     this.state = {
-      users: [],
-      post: [],
-      likes: [],
-      allUsers: []
+      user: "",
+      active: true
     };
   }
 
   componentDidMount() {
+    const { user } = this.state;
     axios
-      .get("/users/getAllinfo")
+      .get("/users/getUser")
       .then(res => {
         this.setState({
-          allUsers: res.data.data
+          user: res.data.user,
+          active: true
         });
       })
       .catch(err => {
-        console.log(err);
+        console.log(`errrr`, err);
       });
-  }
 
+    axios.get("/users/getFollowers").then(res => {
+      console.log(res);
+    });
+  }
   render() {
-    const { users, post, likes, allUsers } = this.state;
-    const { user } = this.props;
-    console.log(`yerrr`, allUsers);
+    const { user } = this.state;
+    console.log("profile consolelog", user);
     return (
-      <div className="feed-posts">
-        {posts.map(post => (
-          <div className="post">
-            <div className="post-top">
-              <img
-                src="http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png"
-                alt="USERPROFILEPICTURE"
-              />{" "}
-              <p className="p-bold">{user.username}</p>
-            </div>
-            <img src={post.post_image} alt={post.id} />
-            <div className="likes-comments"><i class="far fa-heart"></i><i class="far fa-comment"></i></div>            
-            <div className="post-bottom">
-              <p className="p-bold">{user.username}</p>
-              <p className="p-caption">{post.caption}</p>
-            </div>
+      <div className="profile-container">
+        <div className="user-bar">
+          <div className="pro-pic">
+            <img
+              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+              alt="USERPROFILEPIC"
+            />
           </div>
-        ))}
+          <div className="user-info">
+            <div className="row-one">
+              <h1>{user.username}</h1>
+              <button className="edit-profile">
+                <Link to="/profile/edit">Edit Profile</Link>
+              </button>
+            </div>
+            <div className="row-two">
+              <ul className="stats">
+                <li>
+                  <span className="count">60</span> posts
+                </li>
+                <li>
+                  <span className="count">533</span> followers
+                </li>
+                <li>
+                  <span className="count">490</span> following
+                </li>
+              </ul>
+            </div>
+            <div className="row-three"> {user.full_name} </div>
+          </div>
+        </div>
+        <div className="user-posts">
+          {posts.map(post => {
+            return (
+              <div className="post-image">
+                <img src={post.post_image} alt="post-image" />
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }
 }
 
-export default UserFeed;
+export default Profile;

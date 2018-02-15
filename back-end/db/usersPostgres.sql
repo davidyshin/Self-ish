@@ -9,7 +9,8 @@ CREATE TABLE users (
   email VARCHAR UNIQUE,
   full_name VARCHAR,
   username VARCHAR UNIQUE,
-  password_digest VARCHAR
+  password_digest VARCHAR,
+  profile_pic VARCHAR
 );
 
 CREATE TABLE posts (
@@ -34,9 +35,13 @@ CREATE TABLE follows (
 );
 
 
-
 INSERT INTO users (email, full_name, username, password_digest)
-VALUES('google@example.com', 'newton', 'newton123', 'newt'),
-      ('yahoo@example.com', 'carolina', 'carolina456', 'carol'),
-      ('aol@example.com', 'eddie', 'eddie789', 'ed')
+VALUES ('carolina@carolina.com', 'carolina', 'carolina', 'carolina'),
+          ('michael@michael.com', 'michael', 'michael', 'michael'),
+          ('eddie@eddie.com', 'eddie', 'eddieeddie', 'eddieeddie'),
+          ('newton@newton', 'newton', 'newtonnewton', 'newtonnewton'),
+          ('david@david', 'test1', 'test1', 'daviddavid'),
+          ('asdf@david', 'test2', 'test2', 'daviddavid'),
+          ('test3@david', 'test3', 'test3', 'daviddavid'),
+          ('test4@david', 'test4', 'test4', 'daviddavid')
 

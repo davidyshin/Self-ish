@@ -5,8 +5,8 @@ const passport = require("../auth/local");
 
 function registerUser(req, res, next) {
     const hash = authHelpers.createHashPassword(req.body.password)
-    db.none('INSERT INTO users (email, full_name, username, password_digest) VALUES (${email}, ${fullName}, ${username}, ${password})',
-        { email: req.body.email, fullName: req.body.fullName, username: req.body.username, password: hash })
+    db.none('INSERT INTO users (email, full_name, username, password_digest, profile_pic) VALUES (${email}, ${fullName}, ${username}, ${password}, ${profile_pic})',
+        { email: req.body.email, fullName: req.body.fullName, username: req.body.username, password: hash, profile_pic: req.body.profile_pic})
         .then(() => {
             res.status(200)
                 .json({
