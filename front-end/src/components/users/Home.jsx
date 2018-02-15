@@ -49,7 +49,7 @@ class Home extends React.Component {
                 type="search"
                 name="search"
                 id="search"
-                placeholder="Search"
+                placeholder="search"
               />
             </div>
             <div className="right-top">
