@@ -22,149 +22,6 @@ function registerUser(req, res, next) {
         })
 }
 
-function addPost(req, res, next) {
-    db
-        .none('UPDATE users SET post=${post} WHERE username=${username}', { post: req.body.post, username: req.user })
-        .then(() => {
-            res.status(200)
-                .json({
-                    message: 'successfully updated user post'
-                })
-        })
-        .catch((err) => {
-            res.status(500)
-                .json({
-                    message: 'FAILED: couldnt update user post'
-                })
-        })
-}
-
-function getUserPost(req, res, next) {
-    db
-        .one('SELECT post FROM users WHERE username=${username}', req.user)
-        .then((data) => {
-            res.status(200)
-                .json({
-                    post: post
-                })
-        })
-        .catch((err) => {
-            res.status(500)
-                .json({
-                    post: 'Not found'
-                })
-        })
-}
-
-function getAllPost(req, res, next) {
-    db
-        .any('SELECT post FROM users')
-        .then((data) => {
-            res.status(200)
-                .json({
-                    allPost: data
-                })
-        })
-        .catch((err) => {
-            console.log(err)
-            res.status(500)
-            .json({
-                allPost: 'Not found'
-            })
-        })
-}
-
-
-
-function getAllUsers(req, res, next) {
-    db
-        .any('SELECT username FROM users')
-        .then((data) => {
-            res.status(200)
-                .json({
-                    data: data
-                })
-        })
-        .catch((err) => {
-            console.log(err)
-            res.status(409)
-                .json({
-                    data: 'Not found'
-                })
-        })
-}
-
-function getUser(req, res, next) {
-    db
-        .one("SELECT * FROM users where username = ${username}", req.user)
-        .then(function (user) {
-            res.status(200).json({
-                status: "success",
-                user: user,
-                message: "Fetched one user"
-            });
-        })
-        .catch(function (err) {
-            return next(err);
-        });
-}
-
-function getUserLikes (req, res, next) {
-    db
-      .one('SELECT likes FROM users WHERE username=${username}', req.user)
-      .then((likes) => {
-          res.status(200)
-          .json({
-            likes: likes
-          })
-      })
-      .catch((err) => {
-          console.log(err)
-          res.status(500)
-          .json({
-              likes: 'Likes, Not Found'
-          })
-      })
-}
-
-function updateLikes (req, res, next) {
-    db
-    .none('UPDATE users SET likes=${likes} WHERE username=${username}')
-    .then((allLikes) => {
-        res.status(200)
-        .json({
-            allLikes: allLikes
-        })
-    })
-    .catch((err) => {
-        res.status(500)
-        .json({
-            allLikes: 'all likes not found'
-        })
-    })
-}
-
-function getAllInfo(req, res, next) {
-    db
-    .any('SELECT * FROM users')
-    .then((info) => {
-        res.status(200)
-        .json({
-            data: info
-        })
-    })
-    .catch((err) => {
-        console.log(`getallInfo err`, err)
-        res.status(500)
-        .json({
-            data: 'getallInfo not found'
-        })
-    })
-}
-
-
-
-
 
 function logoutUser(req, res, next) {
     req.logout();
@@ -174,26 +31,191 @@ function logoutUser(req, res, next) {
 
 
 
-// post request have req.body
+// post
+
+function newPost(req, res, next) {
+    db
+        .none('INSERT INTO posts(post_image, caption, user_id, dates) VALUES(${post}, ${caption}, ${user_id}, ${dates})',
+        { post: req.body.post, caption: req.body.caption, user_id: req.user.id, dates: req.body.dates })
+        .then(() => {
+            res.status(200)
+                .json({
+                    message: 'successfully updated user post'
+                })
+        })
+        .catch((err) => {
+            console.log(`this is your err`,err)
+            res.status(500)
+                .json({
+                    message: 'FAILED: couldnt update user post'
+                })
+        })
+}
+
+
+// this route will get a specific users post 'getUserPost/:id'
+function getUserPost (req, res, next) {
+    db
+    .any('SELECT post_image, username, id FROM posts JOIN users ON posts.user_id=users.id WHERE posts.user_id=${id}', {id: req.params.id})
+    .then((data) => {
+        res.status(200)
+        .json({
+           userPost: data
+        })
+    })
+    .catch((err) => {
+        console.log(err)
+        res.status(500)
+        .json({
+
+        })
+    })
+}
+
+
+
+
+
+// this routes add likes into the likes table 
+function addLikes(req, res, next) {
+    db
+    .none('INSERT INTO likes (liker_id, post_id) VALUES(${liker}, ${post})', {id: req.user.id, post: req.body.post_id })
+    .then((data) => {
+        res.status(200)
+        .json({
+            likes: data
+        })
+    })
+    .catch((err) => {
+        console.log(`err on addLikes`,err)
+        res.status(500)
+        .json({
+            likes: err
+        })
+    })
+}
 
 
 
 
 
 
+function getPostLikes(req, res, next) {
+    db
+        .one('SELECT Count(*) FROM posts JOIN likes ON likes.post_id=posts.id WHERE likes.post_id=${post_id}', req.body.post_id  )
+        .then((data) => {
+            res.status(200)
+                .json({
+                    likes: data
+                })
+        })
+        .catch((err) => {
+            console.log(`Feed err`, err)
+            res.status(500)
+                .json({
+                    data: 'Feed could not be loaded'
+                })
+        })
+}
+
+
+
+function getFollowersCount (req, res, next) {
+    db
+    .one('SELECT COUNT(followee_id) FROM follows WHERE follower_id=${user}', {user: req.params.id})
+    .then((data) => {
+        res.status(200)
+        .json({
+           followerInfo: data
+        })
+    })
+}
+
+function getFollowersIDs(req, res, next) {
+    db
+    .any('SELECT followee_id FROM follows WHERE follower_id=${user}', {user: req.params.id})
+    .then((data) => {
+        res.status(200)
+        .json({
+            data: data
+        })
+    })
+    .catch((err)=> {
+        console.log(err)
+        res.status(500)
+        .json({
+            data: `getfollowersIDs count not be found`
+        })
+    })
+}
+
+function getFolloweesCount (req, res, next) {
+    db
+    .one('SELECT COUNT(follower_id) FROM follow WHERE followee_id=${user}', {user: req.params.id} )
+    .then((data) => {
+        res.status(200)
+        .json({
+            data: data
+        })
+    })
+    .catch((err)=> {
+        console.log(err)
+        res.status(500)
+        .json({
+            data: `getfolloweesCount count not be found`
+        })
+    })
+}
+
+
+function getFollowees(req,res,next) {
+    db
+    .any('SELECT follower_id FROM follows WHERE followee_id=${user}', {user: req.params.id})
+    .then((data) => {
+        res.status(200)
+        .json({
+            data: data
+        })
+    })
+    .catch((err)=> {
+        console.log(err)
+        res.status(500)
+        .json({
+            data: `getfollowes count not be found`
+        })
+    })
+}
+
+
+function addFollower (req, res, next) {
+    db
+    .none('INSERT INTO follows (follower_id, followee_id) VALUES(${follower_id}, ${followee_id})', {follwer_id: req.params.id, followee_id: req.user.id})
+    .then((data) => {
+       res.status(200)
+       .json({
+         follow: data 
+       })
+    })
+    .catch((err) => {
+        res.status(500)
+        .json({
+            follow: 'follower not added'
+        })
+    })
+}
 
 
 
 
 module.exports = {
-    registerUser,
-    getAllUsers,
-    getUser,
-    logoutUser,
-    addPost, 
-    getAllPost,
-    getUserPost, 
-    updateLikes,
-    getUserLikes, 
-    getAllInfo
+ registerUser,
+ newPost,
+ getUserPost,
+ addLikes,
+ getPostLikes,
+ getFollowersCount,
+getfollowersIDs,
+getfolloweesCount,
+getfollowes,
+addFollower
 }
