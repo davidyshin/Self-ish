@@ -66,31 +66,32 @@ class Profile extends React.Component {
     super();
     this.state = {
       user: "",
+      followers: "",
+      following: "",
+      likes: "",
       active: true
     };
   }
 
   componentDidMount() {
-    const { user } = this.state;
-    axios
-      .get("/users/getUser")
-      .then(res => {
-        this.setState({
-          user: res.data.user,
-          active: true
-        });
-      })
-      .catch(err => {
-        console.log(`errrr`, err);
+    const { user } = this.props;
+    const fetchedStats = {};
+    axios.get(`/users/getFollowersCount/${user.id}`).then(res => {
+      fetchedStats.followers = res.data.followerInfo.count;
+    });
+    axios.get(`/users/getFolloweesCount/${user.id}`).then(res => {
+      fetchedStats.following = res.data.data.count;
+      this.setState({
+        user,
+        followers: fetchedStats.followers,
+        following: fetchedStats.following
       });
-
-    axios.get("/users/getFollowers").then(res => {
-      console.log(res);
     });
   }
+
   render() {
-    const { user } = this.state;
-    console.log("profile consolelog", user);
+    const { user, followers, following } = this.state;
+    console.log(this.state);
     return (
       <div className="profile-container">
         <div className="user-bar">
@@ -113,10 +114,10 @@ class Profile extends React.Component {
                   <span className="count">60</span> posts
                 </li>
                 <li>
-                  <span className="count">533</span> followers
+                  <span className="count">{followers}</span> followers
                 </li>
                 <li>
-                  <span className="count">490</span> following
+                  <span className="count">{following}</span> following
                 </li>
               </ul>
             </div>
