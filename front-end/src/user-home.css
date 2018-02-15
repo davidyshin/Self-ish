@@ -4,6 +4,13 @@
 font-family: 'Cinzel Decorative', cursive;
 font-family: 'Lato', sans-serif; 
 */
+.user-home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
 
 .header-bar {
   width: 100%;
@@ -13,10 +20,11 @@ font-family: 'Lato', sans-serif;
   flex-direction: row;
   justify-content: space-between;
   align-content: center;
-  background-color: white;
+  background-color: #fafafa;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-bottom: 1px solid lightgrey;
   height: 40px;
+  z-index: 1
 
 }
 
