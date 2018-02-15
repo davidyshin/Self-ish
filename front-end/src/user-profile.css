@@ -47,12 +47,14 @@
   margin: 0;
   padding-right: 25px;
 }
+
 .edit-profile {
   background-color: #fafafa;
   border: 1px solid #efefef;
   height: 25px;
   font-weight: bold;
 }
+
 .edit-profile a {
   text-decoration: none;
   color: black;
