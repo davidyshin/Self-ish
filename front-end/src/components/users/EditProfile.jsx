@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import "../../user-profile.css";
 import axios from 'axios';
 import { Route, Link, Switch, Redirect } from "react-router-dom";
-
+import "../../user-editprofile.css"
 
 class EditProfile extends Component {
     constructor() {
@@ -72,7 +72,7 @@ class EditProfile extends Component {
                 
             <div className="signup-container">
               <div id="register-box">
-                <h1>Update Profile Information:</h1>
+                <h1> Edit Profile: </h1>
                 <form onSubmit={this.handleSubmit}>
                   <input
                     className="input-box"
@@ -111,12 +111,12 @@ class EditProfile extends Component {
                     type="text"
                     value={profile_pic}
                     onChange={this.handleInput}
-                    placeholder="Profile Pic"
+                    placeholder="Profile Picture"
                     maxLength="30"
                   />
                   <br />
 
-                  <Link to="/users/profile"><button>Edit Profile</button></Link>
+                  <Link to="/users/profile"><button id="edit-profile-btn" >Edit Profile</button></Link>
                 </form>
                 <br />
                 {message}
