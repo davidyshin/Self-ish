@@ -4,6 +4,7 @@ import NewPost from "./NewPost";
 import UserFeed from "./UserFeed";
 import Profile from "./Profile";
 import UserProfile from "./UserProfile";
+import EditProfile from "./EditProfile";
 import axios from "axios";
 import { Link, Switch, Route } from "react-router-dom";
 import "../../user-home.css";
@@ -26,6 +27,13 @@ class Home extends React.Component {
     const { user } = this.props;
     return <Profile user={user} />;
   };
+
+  renderEditProfile = () => {
+    const { user } = this.props;
+
+      return <EditProfile user={user} />;
+  };
+
   renderFeed = () => {
     const { user } = this.props;
     return <UserFeed user={user} />;
@@ -77,6 +85,7 @@ class Home extends React.Component {
         </div>
         <Route exact path="/" component={this.renderFeed} />
         <Route exact path="/profile" component={this.renderProfile} />
+        <Route exact path="/profile/edit" component={this.renderEditProfile} />
         <Route exact path="/user/:id" component={UserProfile} />
       </div>
     );
