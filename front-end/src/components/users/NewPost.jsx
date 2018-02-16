@@ -65,7 +65,7 @@ class NewPost extends React.Component {
     return (
       <div className="newpost-container">
         <h1> Add an image link below  </h1>
-        <input type='text' value={url} onChange={this.handleInput}/>
+        <input type='text' placeholder="url" value={url} onChange={this.handleInput}/>
          <input type="text" placeholder="Caption" value={caption} onChange={this.handleCaption} />
         <button id="add-image" onClick={this.handleNewPost}>Add image</button>
         < br />
