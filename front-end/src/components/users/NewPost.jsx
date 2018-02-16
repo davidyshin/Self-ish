@@ -64,13 +64,14 @@ class NewPost extends React.Component {
     console.log("HELLO" ,date)
     return (
       <div className="newpost-container">
-        <h1> Add an image link below  </h1>
-        <input type='text' value={url} onChange={this.handleInput}/>
-         <input type="text" placeholder="Caption" value={caption} onChange={this.handleCaption} />
-        <button id="add-image" onClick={this.handleNewPost}>Add image</button>
-        < br />
-
-        <button onClick={this.props.toggleModal}>Cancel</button>
+        <h1> New Post </h1>
+        <input type='text' value={url} onChange={this.handleUrl} class="input-box" placeholder="Url image" />
+        <br/>
+         <input type="text" value={caption} onChange={this.handleCaption} class="input-box" placeholder="Write a caption..." />
+         <br/>
+        <button id="add-post" onClick={this.handleNewPost}> Add image </button>
+        <button id="cancel-post" onClick={this.props.toggleModal}> Cancel </button>
+        <p id="message"> {message} </p>
       </div>
     );
   }
