@@ -77,7 +77,7 @@ class Profile extends React.Component {
         <h1>FOLLOWERS</h1>
         <ul>
           {followers.map(user => {
-            return <li>{user.username}</li>;
+            return <li><Link to={`/user/${user.follower_id}`}>{user.username}</Link></li>;
           })}
         </ul>
         <button onClick={this.toggleFollowerModal}>cancel</button>
@@ -92,7 +92,7 @@ class Profile extends React.Component {
         <h1>FOLLOWING</h1>
         <ul>
           {following.map(user => {
-            return <li>{user.username}</li>;
+            return <li><Link to={`/user/${user.followee_id}`}>{user.username}</Link></li>;
           })}
         </ul>
         <button onClick={this.toggleFollowingModal}>cancel</button>
@@ -105,17 +105,21 @@ class Profile extends React.Component {
       user,
       followersCount,
       followingCount,
+      following,
+      followers,
       followerListIsOpen,
       followingListIsOpen,
       postCount,
       posts
     } = this.state;
+    console.log("following: ", following)    
+    console.log("followers: ", followers)    
     return (
       <div className="profile-container">
         <div className="user-bar">
           <div className="pro-pic">
             <img
-              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+              src={user.profile_pic}
               alt="USERPROFILEPIC"
             />
           </div>
