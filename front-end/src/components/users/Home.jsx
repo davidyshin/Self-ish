@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import NewPost from "./NewPost";
 import UserFeed from "./UserFeed";
 import Profile from "./Profile";
-import UserProfile from "./UserProfile"
+import UserProfile from "./UserProfile";
 import axios from "axios";
 import { Link, Switch, Route } from "react-router-dom";
 import "../../user-home.css";
@@ -33,7 +33,7 @@ class Home extends React.Component {
 
   render() {
     const { modalIsOpen } = this.state;
-    const { logOut } = this.props;
+    const { logOut, user } = this.props;
     console.log(`user`, this.state);
     return (
       <div className="user-home">
@@ -56,7 +56,7 @@ class Home extends React.Component {
             <div className="right-top">
               <div className="user-buttons">
                 <Modal isOpen={modalIsOpen} contentLabel="New Post">
-                  <NewPost toggleModal={this.toggleModal} />
+                  <NewPost user={user} toggleModal={this.toggleModal} />
                 </Modal>
 
                 <button>
