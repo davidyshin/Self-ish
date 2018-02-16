@@ -112,8 +112,7 @@ class Profile extends React.Component {
       postCount,
       posts
     } = this.state;
-    console.log("following: ", following)    
-    console.log("followers: ", followers)    
+
     return (
       <div className="profile-container">
         <div className="user-bar">
@@ -147,7 +146,7 @@ class Profile extends React.Component {
           </div>
         </div>
         <div className="user-posts">
-          {posts.map(post => {
+          {posts.reverse().map(post => {
             return (
               <div className="post-image">
                 <img src={post.post_image} alt="post-image" />

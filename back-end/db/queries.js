@@ -59,12 +59,12 @@ function getSingleUser(req, res, next) {
 function newPost(req, res, next) {
   db
     .none(
-      "INSERT INTO posts(post_image, caption, user_id, dates) VALUES(${post}, ${caption}, ${user_id}, ${dates})",
+      "INSERT INTO posts(post_image, caption, user_id, dates) VALUES(${url}, ${caption}, ${user_id}, ${date})",
       {
-        post: req.body.post,
+        url: req.body.url,
         caption: req.body.caption,
-        user_id: req.user.id,
-        dates: req.body.dates
+        user_id: req.body.user_id,
+        date: req.body.date
       }
     )
     .then(() => {
@@ -245,6 +245,26 @@ function addFollowers(req, res, next) {
     });
 }
 
+
+function getUserFeed(req, res, next) {
+    db
+    .any('SELECT post_image, username, dates, posts.id FROM follows JOIN posts ON follows.followee_id=posts.user_id JOIN users ON follows.followee_id=users.id WHERE follower_id=${user}', {user: req.user.id})
+    .then((data) => {
+        res.status(200)
+        .json({
+            feed: data
+        })
+    })
+    .catch((err) => {
+        console.log(`error rendering feed`, err)
+        feed: 'No data found'
+    })
+}
+
+
+
+
+
 module.exports = {
   registerUser,
   newPost,
@@ -259,5 +279,6 @@ module.exports = {
   getFollowees,
   addFollowers,
   getSingleUser,
-  getUser
+  getUser,
+  getUserFeed
 };
