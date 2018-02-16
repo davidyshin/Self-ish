@@ -112,8 +112,7 @@ class Profile extends React.Component {
       postCount,
       posts
     } = this.state;
-    console.log("following: ", following)    
-    console.log("followers: ", followers)    
+
     return (
       <div className="profile-container">
         <div className="user-bar">

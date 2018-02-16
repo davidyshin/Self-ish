@@ -59,12 +59,12 @@ function getSingleUser(req, res, next) {
 function newPost(req, res, next) {
   db
     .none(
-      "INSERT INTO posts(post_image, caption, user_id, dates) VALUES(${post}, ${caption}, ${user_id}, ${dates})",
+      "INSERT INTO posts(post_image, caption, user_id, dates) VALUES(${url}, ${caption}, ${user_id}, ${date})",
       {
-        post: req.body.post,
+        url: req.body.url,
         caption: req.body.caption,
-        user_id: req.user.id,
-        dates: req.body.dates
+        user_id: req.body.user_id,
+        date: req.body.date
       }
     )
     .then(() => {
