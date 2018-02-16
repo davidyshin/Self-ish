@@ -50,7 +50,7 @@ class UserProfile extends React.Component {
     });
 
     axios.get(`/users/getUserPost/${id}`).then(res => {
-      this.setState({ posts: res.data.userPost });
+      this.setState({ posts: res.data.userPost.reverse() });
     });
     axios.get(`/users/getSingleUser/${id}`).then(res=>{
         this.setState({user: res.data.user})

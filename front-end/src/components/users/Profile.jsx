@@ -52,7 +52,7 @@ class Profile extends React.Component {
     });
 
     axios.get(`/users/getUserPost/${user.id}`).then(res => {
-      this.setState({posts: res.data.userPost});
+      this.setState({posts: res.data.userPost.reverse()});
     });
   }
 
@@ -146,7 +146,7 @@ class Profile extends React.Component {
           </div>
         </div>
         <div className="user-posts">
-          {posts.reverse().map(post => {
+          {posts.map(post => {
             return (
               <div className="post-image">
                 <img src={post.post_image} alt="post-image" />
