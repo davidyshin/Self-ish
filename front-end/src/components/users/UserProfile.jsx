@@ -99,6 +99,9 @@ class UserProfile extends React.Component {
       </div>
     );
   };
+  followUser = () => {
+    const {user} = this.props;
+  }
 
   render() {
     const {
@@ -119,7 +122,7 @@ class UserProfile extends React.Component {
           <div className="user-info">
             <div className="row-one">
               <h1>{user.username}</h1>
-              <button className="follow-profile">
+              <button onClick={this.followUser} className="follow-profile">
                 Follow
               </button>
             </div>
