@@ -22,7 +22,7 @@ router.get('/getSingleUser/:id', db.getSingleUser)
 
 
 // FEED ROUTES
-
+router.get('/feed', loginRequired, db.getUserFeed)
 
 
 
