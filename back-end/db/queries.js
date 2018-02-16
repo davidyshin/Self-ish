@@ -116,6 +116,26 @@ function getUserPostCount(req, res, next) {
     });
 }
 
+function editUser(req, res, next) {
+  const hash = authHelpers.createHashPassword(req.body.password);
+  db
+    .none(
+      "UPDATE users SET email = ${email}, full_name=${fullName}, password_digest=${password}, profile_pic=${profile_pic} WHERE id=${id}",
+      {
+        email: req.body.email,
+        fullName: req.body.fullName,
+        password: hash,
+        profile_pic: req.body.profile_pic,
+        id: req.body.id
+      }
+    )
+    .then(() => {
+      res.status(200).json({
+        message: "successfully updated user"
+      });
+    });
+}
+
 // this routes add likes into the likes table
 function addLikes(req, res, next) {
   db
@@ -245,28 +265,26 @@ function addFollowers(req, res, next) {
     });
 }
 
-
 function getUserFeed(req, res, next) {
-    db
-    .any('SELECT post_image, users.id, username, dates, posts.id, posts.caption FROM follows JOIN posts ON follows.followee_id=posts.user_id JOIN users ON follows.followee_id=users.id WHERE follower_id=${user} OR followee_id=${user} ORDER BY posts.id DESC', {user: req.user.id})
-    .then((data) => {
-        res.status(200)
-        .json({
-            feed: data
-        })
+  db
+    .any(
+      "SELECT post_image, users.id, username, dates, posts.id, posts.caption FROM follows JOIN posts ON follows.followee_id=posts.user_id JOIN users ON follows.followee_id=users.id WHERE follower_id=${user} OR followee_id=${user} ORDER BY posts.id DESC",
+      { user: req.user.id }
+    )
+    .then(data => {
+      res.status(200).json({
+        feed: data
+      });
     })
-    .catch((err) => {
-        console.log(`error rendering feed`, err)
-        feed: 'No data found'
-    })
+    .catch(err => {
+      console.log(`error rendering feed`, err);
+      feed: "No data found";
+    });
 }
-
-
-
-
 
 module.exports = {
   registerUser,
+  editUser,
   newPost,
   getUserPost,
   getUserPostCount,

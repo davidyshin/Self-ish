@@ -119,7 +119,7 @@ class UserProfile extends React.Component {
           <div className="user-info">
             <div className="row-one">
               <h1>{user.username}</h1>
-              <button className="edit-profile">
+              <button className="follow-profile">
                 Follow
               </button>
             </div>
