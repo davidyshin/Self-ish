@@ -248,7 +248,7 @@ function addFollowers(req, res, next) {
 
 function getUserFeed(req, res, next) {
     db
-    .any('SELECT post_image, username, dates, posts.id FROM follows JOIN posts ON follows.followee_id=posts.user_id JOIN users ON follows.followee_id=users.id WHERE follower_id=${user}', {user: req.user.id})
+    .any('SELECT post_image, users.id, username, dates, posts.id, posts.caption FROM follows JOIN posts ON follows.followee_id=posts.user_id JOIN users ON follows.followee_id=users.id WHERE follower_id=${user} OR followee_id=${user} ORDER BY posts.id DESC', {user: req.user.id})
     .then((data) => {
         res.status(200)
         .json({
