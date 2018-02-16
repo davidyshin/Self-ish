@@ -6,7 +6,8 @@ class NewPost extends React.Component {
   constructor() {
     super();
     this.state = {
-      url: ''
+      url: '',
+      message: ''
     };
   }
 
@@ -21,23 +22,33 @@ class NewPost extends React.Component {
   handleNewPost = (e) => {
     const { url } = this.state
     axios 
-      .post('/users/addPost', {
+      .post('/users/newPost', {
         post: url,
-        username: url,
+        dates: Date().slice(0,15)
+      })
+      .then((res) => {
+        this.setState({
+          url: '',
+          message: 'Added Post!'
+        })
+      })
+      .catch((err) => {
+        console.log(`newPost err`, err)
       })
   }
 
 
 
 
-
   render() {
-    const { url } = this.state
+    const { url, message } = this.state
     return (
       <div className="newpost-container">
         <h1> Add an image link below  </h1>
         <input type='text' value={url} onChange={this.handleInput}/>
         <button onClick={this.handleNewPost}>Add image</button>
+        <br />
+        {message}
         < br />
         <button onClick={this.props.toggleModal}>Cancel</button>
       </div>

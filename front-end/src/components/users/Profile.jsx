@@ -147,7 +147,7 @@ class Profile extends React.Component {
           </div>
         </div>
         <div className="user-posts">
-          {posts.map(post => {
+          {posts.reverse().map(post => {
             return (
               <div className="post-image">
                 <img src={post.post_image} alt="post-image" />
