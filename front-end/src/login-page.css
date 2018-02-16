@@ -12,37 +12,56 @@ font-family: 'Lato', sans-serif;
     font-family: 'Lato', sans-serif;
     width: 300px;
     height: 100%;
-    margin-top: 50px; 
+    margin-top: 50px;
 }
 
 .input-box {
-  margin-bottom: 10px;
-  width: 200px;
-  height: 25px;
+    margin-bottom: 10px;
+    border-radius: 3px 3px;
+    text-indent: 10px;
+    width: 230px;
+    height: 28px;
+    border: none;
 }
 
 #login-box,
 #signup-box {
-    
-  background-color: rgba(255, 255, 255, 0.52);
-  border: 0.5px solid lightgrey;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: rgba(255, 255, 255, 0.52);
+    border: 0.5px solid lightgrey;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #login-box {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 h4,
 #signup-agreement {
-  color: gray;
+    color: gray;
 }
 
 #app-name {
-  font-family: "Cinzel Decorative", cursive;
-  font-weight: bold;
+    font-family: "Cinzel Decorative", cursive;
+    font-weight: bold;
 }
 
 .button {
-  -webkit-appearance: none;
+    -webkit-appearance: none;
+    color: white;
+    font-weight: bold;
+    background-color: rgb(62, 153, 237);
+    border: rgb(62, 153, 237);
+    border-radius: 3px 3px;
+    width: 230px;
+    height: 28px;
+    font-size: 14px;
+}
+
+#forgot-link {
+  color: black;
+}
+
+a {
+  color: rgb(62, 153, 237);
+  text-decoration-line: none;
 }

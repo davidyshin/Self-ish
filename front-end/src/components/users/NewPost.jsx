@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { Route, Link, Switch } from "react-router-dom";
+import { Route, Link, Switch } from 'react-router-dom'
+import "../../user-newpost.css";
+
 
 class NewPost extends React.Component {
   constructor() {
@@ -62,22 +64,12 @@ class NewPost extends React.Component {
     console.log("HELLO" ,date)
     return (
       <div className="newpost-container">
-        <h1> Add an image link below </h1>
-        <input
-          type="text"
-          placeholder="Image url"
-          value={url}
-          onChange={this.handleUrl}
-        />
-        <input
-          type="text"
-          placeholder="Caption"
-          value={caption}
-          onChange={this.handleCaption}
-        />
-        {message}
-        <button onClick={this.handleNewPost}>Add image</button>
-        <br />
+        <h1> Add an image link below  </h1>
+        <input type='text' value={url} onChange={this.handleInput}/>
+         <input type="text" placeholder="Caption" value={caption} onChange={this.handleCaption} />
+        <button id="add-image" onClick={this.handleNewPost}>Add image</button>
+        < br />
+
         <button onClick={this.props.toggleModal}>Cancel</button>
       </div>
     );
