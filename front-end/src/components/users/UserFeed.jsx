@@ -22,24 +22,28 @@ class UserFeed extends React.Component {
     axios
       .get('/users/getUserFeed')
       .then((res) => {
-        console.log(`testtttttt`,res.data.feed)
-        console.log(`yamada`,this.removeDuplicates(res.data.feed))
+        console.log(`testtttttt`, res.data.feed)
+        console.log(`yamada`, this.removeDuplicates(res.data.feed))
         this.setState({
-            posts: this.removeDuplicates(res.data.feed)
+          posts: this.removeDuplicates(res.data.feed)
         })
       })
       .catch((err) => {
-        console.log(`feed err`,err)
+        console.log(`feed err`, err)
       })
   }
 
 
 
   removeDuplicates = (arr) => {
+    var postArr = []
     var newArr = []
-    for(var i = 0; i < arr.length; i++){
-      if(!newArr.includes(arr[i].post_image)) {
-        newArr.push(arr[i])
+    for (var i = 0; i < arr.length; i++) {
+      postArr.push(arr[i].post_image)
+      for (var i = 0; i < arr.length; i++) {
+        if (!postArr.includes(arr[i].post_image)) {
+              newArr.push(arr[i])
+        }
       }
     }
     return newArr
@@ -52,7 +56,7 @@ class UserFeed extends React.Component {
 
   render() {
     const { users, posts, likes, allUsers } = this.state;
-    console.log(`poooooooosssattttt`,posts)
+    console.log(`poooooooosssattttt`, posts)
     const { user } = this.props;
     return (
       <div className="feed-posts">
@@ -65,7 +69,7 @@ class UserFeed extends React.Component {
               />{" "}
               <p className="p-bold">{post.username}</p>
             </div>
-            <img src={post.post_image} alt={post.id} width='400' height='400'/>
+            <img src={post.post_image} alt={post.id} width='400' height='400' />
             <div className="likes-comments">
               <i class="far fa-heart" />
               <i class="far fa-comment" />
