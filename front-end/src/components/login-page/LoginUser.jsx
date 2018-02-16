@@ -64,14 +64,14 @@ class LoginUser extends React.Component {
                 className="input-box"
                 />
                 <br/>
-                <button onClick={this.handleSubmit}>Log in</button>
+                <button class="button" onClick={this.handleSubmit}>Log in</button>
                 <br />
                 {message}
-                <p> <Link to="/"> Forgot Password?</Link></p>
+                <p> <Link id="forgot-link" to="/"> Forgot Password? </Link></p>
                 </div>
 
                 <div id="signup-box">
-                    <p> Not a Self-ish member? <Link to="/register"> Sign Up</Link></p>
+                    <p> Not a Self-ish member? <Link to="/register"> Sign Up </Link></p>
                  </div>
             </div>
         )

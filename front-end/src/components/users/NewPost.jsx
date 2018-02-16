@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Route, Link, Switch } from 'react-router-dom'
+import "../../user-newpost.css";
 
 class NewPost extends React.Component {
   constructor() {
@@ -37,7 +38,7 @@ class NewPost extends React.Component {
       <div className="newpost-container">
         <h1> Add an image link below  </h1>
         <input type='text' value={url} onChange={this.handleInput}/>
-        <button onClick={this.handleNewPost}>Add image</button>
+        <button id="add-image" onClick={this.handleNewPost}>Add image</button>
         < br />
         <button onClick={this.props.toggleModal}>Cancel</button>
       </div>
