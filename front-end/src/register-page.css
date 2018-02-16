@@ -53,9 +53,16 @@ h4,
     width: 230px;
     height: 28px;
     font-size: 14px;
+    opacity: 1;
+    transition: 0.3s;
 }
 
 a {
     color: rgb(62, 153, 237);
     text-decoration-line: none;
+}
+
+.button:hover,
+a:hover {
+    opacity: 0.6
 }
