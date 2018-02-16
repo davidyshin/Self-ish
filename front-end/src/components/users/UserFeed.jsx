@@ -10,7 +10,7 @@ class UserFeed extends React.Component {
     super();
     this.state = {
       users: [],
-      post: [],
+      posts: [],
       likes: [],
       allUsers: []
     };
@@ -19,7 +19,34 @@ class UserFeed extends React.Component {
 
 
   componentDidMount() {
-    
+    axios
+      .get('/users/getUserFeed')
+      .then((res) => {
+        console.log(`testtttttt`, res.data.feed)
+        console.log(`yamada`, this.removeDuplicates(res.data.feed))
+        this.setState({
+          posts: this.removeDuplicates(res.data.feed)
+        })
+      })
+      .catch((err) => {
+        console.log(`feed err`, err)
+      })
+  }
+
+
+
+  removeDuplicates = (arr) => {
+    var postArr = []
+    var newArr = []
+    for (var i = 0; i < arr.length; i++) {
+      postArr.push(arr[i].post_image)
+      for (var i = 0; i < arr.length; i++) {
+        if (!postArr.includes(arr[i].post_image)) {
+              newArr.push(arr[i])
+        }
+      }
+    }
+    return newArr
   }
 
 
@@ -27,10 +54,9 @@ class UserFeed extends React.Component {
 
 
 
-
-
   render() {
-    const { users, post, likes, allUsers } = this.state;
+    const { users, posts, likes, allUsers } = this.state;
+    console.log(`poooooooosssattttt`, posts)
     const { user } = this.props;
     return (
       <div className="feed-posts">
@@ -41,15 +67,16 @@ class UserFeed extends React.Component {
                 src="http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png"
                 alt="USERPROFILEPICTURE"
               />{" "}
-              <p className="p-bold">{user.username}</p>
+              <p className="p-bold">{post.username}</p>
             </div>
-            <img src={post.post_image} alt={post.id} />
+            <img src={post.post_image} alt={post.id} width='400' height='400' />
             <div className="likes-comments">
               <i class="far fa-heart" />
               <i class="far fa-comment" />
             </div>
             <div className="post-bottom">
-              <p className="p-bold">{user.username}</p>
+              <p className="p-bold">{post.username}</p>
+              <p>{post.dates}</p>
               <p className="p-caption">{post.caption}</p>
             </div>
           </div>
