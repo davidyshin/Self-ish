@@ -56,7 +56,7 @@ function newPost(req, res, next) {
 // this route will get a specific users post 'getUserPost/:id'
 function getUserPost (req, res, next) {
     db
-    .any('SELECT post_image, username, id FROM posts JOIN users ON posts.user_id=users.id WHERE posts.user_id=${id}', {id: req.params.id})
+    .any('SELECT post_image, username, users.id FROM posts JOIN users ON posts.user_id=users.id WHERE posts.user_id=${id}', {id: req.params.id})
     .then((data) => {
         res.status(200)
         .json({
@@ -131,9 +131,13 @@ function getFollowersCount (req, res, next) {
     })
 }
 
+// SELECT username
+// FROM users JOIN follows ON follows.id=users.id
+// WHERE follower_id=3
+
 function getFollowersIDs(req, res, next) {
     db
-    .any('SELECT followee_id FROM follows WHERE follower_id=${user}', {user: req.params.id})
+    .any('SELECT username, followee_id FROM follows JOIN users ON follows.followee_id=users.id WHERE follower_id=${user}', {user: req.params.id})
     .then((data) => {
         res.status(200)
         .json({
@@ -151,7 +155,7 @@ function getFollowersIDs(req, res, next) {
 
 function getFolloweesCount (req, res, next) {
     db
-    .one('SELECT COUNT(follower_id) FROM follow WHERE followee_id=${user}', {user: req.params.id} )
+    .one('SELECT username, follower_id FROM follows JOIN users ON follows.follower_id=users.id WHERE followee_id=${user}', {user: req.params.id} )
     .then((data) => {
         res.status(200)
         .json({
@@ -205,6 +209,34 @@ function addFollower (req, res, next) {
 }
 
 
+function getUser (req, res, next ) {
+    db
+    .one('SELECT * FROM users WHERE username=${username}', req.user.username)
+}
+
+function unFollowUser(req, res, next) {
+    db
+    .none('DELETE FROM follows WHERE follower_id=${} AND followee_id=${}', )
+}
+
+
+function getUserPostCount (req, res, next ) {
+    db
+    .one('SELECT SELECT COUNT(post_image) FROM posts WHERE user_id=${user_id}', {user_id: req.params.id})
+    .then((data) => {
+        res.status(200)
+        .json({
+            postCount: data
+        })
+    })
+    .catch((err) => {
+        console.log(`postCount err`, err)
+        res.status(500)
+        .json({
+            postCount: 'Could not be found'
+        })
+    })
+}
 
 
 module.exports = {
@@ -217,5 +249,6 @@ module.exports = {
 getFollowersIDs,
 getFolloweesCount,
 getFollowees,
-addFollower
+addFollower,
+logoutUser
 }

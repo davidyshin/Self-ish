@@ -45,3 +45,6 @@ VALUES ('carolina@carolina.com', 'carolina', 'carolina', 'carolina'),
           ('test3@david', 'test3', 'test3', 'daviddavid'),
           ('test4@david', 'test4', 'test4', 'daviddavid')
 
+
+INSERT INTO posts(z)
+
