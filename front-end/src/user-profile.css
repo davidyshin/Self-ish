@@ -70,10 +70,14 @@
     padding: 0;
     margin: 0;
     list-style: none;
+
 }
 .stats li {
     display: inline;
     padding-right: 25px;
+}
+.follows-list {
+  cursor: pointer;
 }
 .user-posts {
     display: flex;
@@ -91,4 +95,15 @@
     height: 260px;
     width: 260px;
     padding-bottom: 15px;
+}
+
+.follows-modal {
+  display: flex;
+  padding-top: 100px;
+  justify-content: center;
+  position: 'absolute';
+  margin: 0 auto;
+  width: 500px;
+  height: 100%;
+  background-color: white;
 }

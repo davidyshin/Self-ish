@@ -73,23 +73,9 @@ class UserFeed extends React.Component {
     };
   }
 
-  componentDidMount() {
-    axios
-      .get("/users/getAllinfo")
-      .then(res => {
-        this.setState({
-          allUsers: res.data.data
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
-
   render() {
     const { users, post, likes, allUsers } = this.state;
     const { user } = this.props;
-    console.log(`yerrr`, allUsers);
     return (
       <div className="feed-posts">
         {posts.map(post => (
@@ -102,7 +88,10 @@ class UserFeed extends React.Component {
               <p className="p-bold">{user.username}</p>
             </div>
             <img src={post.post_image} alt={post.id} />
-            <div className="likes-comments"><i class="far fa-heart"></i><i class="far fa-comment"></i></div>            
+            <div className="likes-comments">
+              <i class="far fa-heart" />
+              <i class="far fa-comment" />
+            </div>
             <div className="post-bottom">
               <p className="p-bold">{user.username}</p>
               <p className="p-caption">{post.caption}</p>

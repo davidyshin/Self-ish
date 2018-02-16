@@ -21,6 +21,7 @@ class App extends Component {
     axios
       .get("/users/getUser")
       .then(res => {
+        console.log("THIS IS A RESPONSE" , res)
         this.setState({
           user: res.data.user,
           active: true
