@@ -77,6 +77,7 @@ class Home extends React.Component {
         </div>
         <Route exact path="/" component={this.renderFeed} />
         <Route exact path="/profile" component={this.renderProfile} />
+        <Route exact path="/profile/edit" component={this.renderEditProfile} />
       </div>
     );
   }
