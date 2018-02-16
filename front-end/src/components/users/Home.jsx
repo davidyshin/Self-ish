@@ -34,7 +34,6 @@ class Home extends React.Component {
   render() {
     const { modalIsOpen } = this.state;
     const { logOut, user } = this.props;
-    console.log(`user`, this.state);
     return (
       <div className="user-home">
         <div className="header-bar">
